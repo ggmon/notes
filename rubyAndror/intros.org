@@ -1,0 +1,12 @@
+#+STARTUP: overview
+#+TAGS:
+#+STARTUP: hidestars
+
+* Introduction to ruby on rails
+
+** Development principles
+
+   - convention over configuration
+   - don't repeat yourself
+   - agile development
+

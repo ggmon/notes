@@ -1,0 +1,64 @@
+* SEO
+
+** Search Engine Basics
+
+   Crawlers or Spiders visit the programs are software programs
+   In Search Engine Maketing fields, the pages the engine return to fulfill a query are reffered to as SERPS (search engine results pages).
+   Normally we target "Natural/Organic/Algorithamic" results
+
+   - Natural/Organic/Algorithamic 
+     These results are pulled from the search engines' primary indexes on the web and ranked in order of releavance an popularity according
+     to their complex algorithms
+
+
+** Algorithm-Based Ranking Systems: Crawling, Indexing,and Ranking
+
+   The search engines have several major goals and functions. These include
+   
+   - Crawling and Indexing the billions of documents (pages and files) accessible on the Web
+   - Responding to user quries by providing list of relevant pages.
+
+*** Crawling And Indexing
+    
+    The linked structure of the Web Servs to bind together all the pages which are made public as a result of someone linking them. Through
+    links, search engines' automated robots called crawlers or spiders can reach many billions of pages on the server. Once these pages are
+    found, they parse and stores it in various datastructures for further serach queries.
+
+    You ideally begin your crawls with a trusted set of websites. You can think of a factor in evaluating the trust in your website as the 
+    click distance between your website and the most trusted
+
+
+*** Retrievels and Ranking
+
+    The next step in this quest for knowledge occurs when the search engine returns a list of relevant pages on the Web in the order most
+    likely to satisfy the user. This process requires the search engines to scour their corpus of billions of documents and do two 
+    things: first, return only the results that are related to the searcher’s query; and second, rank the results in order of perceived 
+    importance (taking into account the trust and authority associated with the site). It is both relevance and importance that the process
+    of SEO is meant to influence.
+
+    - Relevance 
+      is the degree to which the content of the documents returned in a search matches the user’s query intention and terms. The relevance 
+      of a document increases if the terms or phrase queried by the user occurs multiple times and shows up in the title of the work or in
+      important headlines or subheads, or if links to the page come from relevant pages and use relevant anchor text.
+
+      
+    - Importance or Popularity
+      refers to the relative importance, measured via citation (the act of one work referencing another, as often occurs in academic and 
+      business documents) of a given document that matches the user’s query. The popularity of a given document increases with every other
+      document that references it. In the academic world, this concept is known as citation analysis. You can think of importance as a way
+      to determine which page, from a group of equally relevant pages, shows up first in the search results, which is second, and so forth.
+      The relative authority of the site, and the trust the search engine has in it, are significant parts of this determination. Of course, 
+      the equation is a bit more complex than this and not all pages are equally relevant. Ultimately, it is the combination of relevance 
+      and importance that determines the ranking order.
+
+      Popularity and releavance are determined by algorithms reffered to as ranking factors or algorithmic ranking criteria.
+
+      
+
+
+
+
+
+
+
+   

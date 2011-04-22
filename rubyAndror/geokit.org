@@ -1,0 +1,26 @@
+#+STARTUP: overview
+#+STARTUP: hidestars
+
+
+* Get GeoKit Working
+
+
+- place the plugin in the plugin directory
+
+- add the google API key to plugin/geokit/assets/api_keys_templates
+
+- In the relavant controller on the top include the following
+  
+  include GeoKit::Geocoders
+
+  include GeoKit::Geocoders
+  class GeocodingController < ApplicationController
+   def map
+    @coordinates = GoogleGeocoder.geocode("480 E Broad St, Columbus, Ohio 43215")
+   end  
+  end
+
+  
+
+
+  

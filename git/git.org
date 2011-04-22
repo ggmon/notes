@@ -1,0 +1,313 @@
+#+STARTUP: overview
+#+STARTUP: hidestars
+
+
+* Git snippets
+** Introduction
+   
+*** Introduce yourself to git
+   
+   
+    $ git config --global user.name "ggmon"
+    $ git config --global user.email "ggmonin@gmail.com"
+
+*** Importing a  new Project
+    
+    Assume you have a project folder you can place it under git revision
+
+    $ cd project
+    $ git init
+    
+*** Tell git to take a snapshot of the contents of all files under the current directory
+    
+    $ git add .
+    
+*** Permanently store the contents of the index in the repository
+    
+    $git commit -m "This is a test commit"
+
+
+** Making Changes
+
+   Modify some files, then add their updated contents to the index.
+
+   $ git add file1 file2 file3
+
+   You are now ready to commit
+
+
+*** View what is about to be commited 
+
+    $ git diff --cached
+
+*** Brief summary of the situation
+
+    $ git status
+
+    
+*** Alternate  for running git-add beforehand, you can use
+
+    $ git commit -a
+   
+ 
+** Git tracks content not files
+
+   Many revision control systems provide an add command that tells the system to start
+   tracking changes to a new file. Git's add command does something simpler and more
+   powerful: git-add is used both for new and newly modified files, and in both cases
+   it takes a snapshot of the given files and stages that content in the index, ready
+   for inclusion in the next commit.
+
+
+** Viewing project history
+
+   At any point you can view the history of your changes using
+
+   $ git log
+
+   If you also wnat to see the complete diffs at each step, use
+
+   $ git log -p
+
+   Often the overview of the change is useful to get a feed of each step
+
+   $ git log --stat --summary
+
+   
+** Managing branches
+
+   A single git repository can maintain multiple braches of developemnt. To create a new
+   brach name "experimental" use
+
+   $ git brach experimental
+
+   if you now run
+
+   $ git brach
+   
+   you will get a list of all existing branches.
+
+   
+*** To switch to the a brach
+
+    $ git checkout experimental
+
+    Now you can change a single file and commit, this is now commited to the experimental
+    brach, Now to swith back to themaster
+    
+    $ git checkout master
+
+    You can make different change on the master brach:
+
+    at this point the two branches have diverged, with different changes made in each.
+
+
+*** To merge the branch with experimental    
+    
+    $ git merge experimental
+
+    If the changes don't conflict,you're done. If there conflicts, markers will be left in
+    the problematic files showing the conflict.
+
+
+    $ git diff 
+
+    will show this. Once you've edited the files to resolv the conflicts
+
+    $ git commit -a
+
+    will commit the result of the merge. Finally.
+
+    $ gitk
+    
+    will show a nice graphical representation of the resulting history.
+
+
+*** Deleting the Braches
+
+    At this point you could delete the experimental brach with 
+
+    $ git brach -d experimental
+
+    This command ensures that the changes in the experimental brach are already in the
+    curent brach.
+
+    If you develop on a brach crazy-idea, then regret it, you can always delete the brach
+    with
+
+    $git  brach -D crazy-idea
+
+    Braches are cheap and easy, so this is a good way to try something out.
+
+
+** Using git for collaboration
+
+*** Cloning And Pulling
+
+    This is the note headline
+    You can clone a existing repository
+    $ git clone /existingrepo/ newrepo
+    
+    You can make changes to the new repository and then when ready you can pull the new changes
+    to the orginal repo
+
+    $ git pull newrepo master
+
+    The master is actually not necessay this is the brach from where you have to pull
+
+    The pull command performs two  operation: it fetches changes from a remote brach, then
+    merges them into the current brach.
+
+    If there is conflict git will still perform the fetch but will refuse to merge, then we 
+    
+
+    
+*** Fetching 
+
+    $ git fetch /other/repo master
+    
+    To see what the remote repository has done
+    $ git log -p HEAD..FETCH_HEAD
+    $ gitk HEAD..FETCH_HEAD
+
+    To see what both of them has done
+
+    $ gitk HEAD...FETCH_HEAD
+
+*** Specifying the remote repository
+    
+    $ git remote add remote /to/the/remotdir
+
+    then
+    
+    $ git fetch remote
+
+    $ git log -p master..remote/master
+    
+    $ git pull . remote/mastes
+
+*** To get info from git config
+
+    $ git config --get remote.orgin.url
+
+    git also keeps a pristine copy of the orginal master brach, form which cloned under the
+    name "orgin/master":
+
+    $ git brach -r
+    
+
+
+** Exploring History
+
+   Git history is represented as a series of interrelated commits. git-log command can list
+   those commits.
+
+   $ git log
+
+   you will see the hash for the different commits, now we can give this name to git-show to
+   see the details about this commit
+
+   $ git show c8a332bc35fffd33322
+
+   But there are other ways to refer to commits. You can use any intial part of the name that
+   is long enough to uniquely identify the commit:
+
+   $ git show c8a332 #  the first few charcters of the name are
+
+   $ git show HEAD   #  the tip of the current brach
+
+   $ git show expreimental # the tip of the experimental brach
+
+
+   Every comit usally has one "parent" commit which points to the previous state
+
+   $ git show HEAD^ # to see the parent of the HEAD
+   
+   $ git show HEAD^^ # to see the grandparent of the HEAD
+
+   $ git show HEAD~4  # great great grandparent of HEAD
+
+   note that merge commits may have more than one parent:
+
+   $ git show HEAD^1 # show the first parent of HEAD    
+   $ git show HEAD^2 # show the second parent of HEAD
+
+*** Tagging, giving your own name 
+
+   You can also give commits name of your own; after running
+
+   $ git tag v2.5 1b2d1ffff
+
+   Any git command that needs to know a commit can take any of these names. For example:
+
+   $ git diff v2.5 HEAD # compare the current HEAD to v2.5
+   
+   $ git brach stable v2.5 # start a new branch named "stable" based at v2.5
+
+   $ git reset --hard HEAD^ # reset your current brach and working directory to its state at HEAD
+
+   
+
+*** Grepping on the directory
+
+    $ git grep "hello" v2.5
+    
+    searchs for all occurances of "hello" in v2.5
+
+    $ git grep "hello" 
+    
+
+*** Some examples with git-log
+
+    $ git log v2.5..v2.6 # commits between v2.5 and v2.6
+    $ git log v2.5..     # commits since v2.5
+    $ git log --since="2 weeks ago" # commits from the last 2 weeks
+    $ git log v2.5.. Makefile # commits since v2.5 which modify Makefile
+
+    The command
+
+    $ git log stable..experimental
+    
+    will list commits made in the experimental brach but not in the stable brach while
+
+    $ git log experimental..stable
+
+    will show the list of commits made on the stable brach but not the experimental brach
+
+    
+    $ gitk --since="2 weeks ago" drivers/
+
+    
+    Finally Most commands that take filenames will optionally allow you to preced any 
+    filename by a commit, to specify a particular version of the file
+
+    $ git diff v2.5:Makefile HEAD:Makefile.in
+
+    you can also use git-show to see any such file:
+
+    $ git show v2.5:Makefile
+
+    
+
+
+
+* Git Object Database
+
+  Two fundemental pieces of git's architecture--the object database and the index file--and
+  to provide the reader with everything necessary to understand the rest of the git
+  documentation
+
+** The git object database
+
+   $ m 
+    
+    
+  
+
+
+** Tips
+
+*** How to revert a file in Git
+    
+    git checkout path/to/file
+    git checkout -- path/to/file

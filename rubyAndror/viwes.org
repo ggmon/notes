@@ -1,0 +1,107 @@
+
+
+* Presenting the views
+
+
+Action View is the name of the library that Rails provides us for the view.
+
+Within the ERb, there are four different tag combinations that we can
+use to embed  Ruby code into our pages.
+
+
+** The <%= %> Tags
+The ruby code will be evaluated when the server renders the template,
+and the result of that Ruby code will then be injected into the HTML
+source in its place
+
+
+** The <% %> Tags
+
+There are times that we want to execute Ruby code but not actually
+insert anything into the HTML output of our template.
+
+
+** The <%- -%> Tags
+
+The tags works the same as above except that they suppress any
+additional leading white space and extra new lines.
+
+
+** The <%# %> Tags
+
+This is for comments within erb
+
+
+* Layouts
+
+With layout we have the ability to define a common header and footer
+for all our pages. Inside the layout folder you can have
+application.html.erb which is the layout which is inherited by all the
+controller. If you need a layout for a particular controller you can
+have a layout by that name like authors.html.erb for
+authors_controller.
+
+Within a contrller we can explicitly specify which layout to  use.
+
+layout nil
+
+layout 'mylayout'
+
+layout 'mylayout', :only => :index
+
+layout 'mylayout', :expect=> :world
+
+
+
+** Custom layout content form the view
+
+One final cool thing about layouts that we'll cover in this section,
+is that we can also specify multiple sections in out layout in which
+to insert content from our view.
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>My Hello Application</title>
+    <%= yield :custom_styles %>
+  </head>
+  <body>
+    <ul id="navigation">
+       <%= yield :subnav %>
+    </ul>
+    <h1>Ruh Roh! This layout doesn't match any Controllers</h1>
+    <%= yield %>
+  </body>
+
+
+Now on the view side.
+
+<% content_for(:custom_styles) do %>
+  <style type="text/css" media="screen">
+    #navigation {margin: 0; padding: 0; background-color: #69C;
+       list-style-type: none; float: left; width: 100%;}
+    #navigation li {margin: 0; padding: 0; float: left;}
+    #navigation a {float:left; width: 127px; color: #000;
+      text-decoration: none; line-height: 2.5; text-align:
+      center; border-right: 1px solid #000;}
+  </style>
+<% end %>
+<% content_for(:subnav) do %>
+  <li><a href="/">Home</a></li>
+  <li><a href="/">Logout</a></li>
+<% end %>
+
+
+
+
+** Helper methods
+
+In addition to the layouts, Rails provides an impressive number of
+helper methods wihtin our views to simplify many  of our common tasks.
+
+*** Rails provided helpers
+
+style 

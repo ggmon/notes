@@ -1,0 +1,33 @@
+
+
+* Building your own Helpers
+
+The basic idea of helper is to use modules, modules can be  used to
+mix in new methods and functionality to an existing class. Infact if
+we look within our /app directory, It already contains a helper
+subdirectory which contains default helper. When Rails goes to render
+our template, it mixes in the appropriate  helper modules.
+
+We can add a new helper methods eaisly by simply adding the
+appropriate methods to this module
+
+
+module ApplicationHelper
+  def show_avatar
+    if @user.avatar
+      @user.avatar.public_filename
+    else
+      "no_avatar.gif"
+    end
+  end
+end
+
+
+
+and within our view templates, anytime we wanted to display a user's
+avatar, we could do so with a simple call to this
+
+
+<%= img_tag show_avatar %>
+
+

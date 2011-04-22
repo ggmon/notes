@@ -1,0 +1,85 @@
+#+STARTUP:hidestars
+#+STARTUP:overview
+
+* Build Your Own Web Service With PHP and XML-RPC
+
+  Web services are about exchanging data between a server and a 
+  client using standard XML format to "package" requests and data so
+  that both systems can "understand" each other.
+
+  Network-wise, data exchange in a Web Service typically happens via
+  TCP port 80, using standard HTTP protocol POSTs. Put another way,
+  Web Services operate in basically the same way your browser does
+  when it POSTs an HTML form to a site, and receives a Web page in
+  response. The only real difference is that, instead of HTML, Web
+  Services use XML. And this means Web Services can be available
+  anywhere on the Internet, passing through firewalls the same way
+  viewing a Web page does. The data exchange happens at the packaging
+  layer.
+
+
+  On top of the data exchange, you also need information that
+  describes the interface (or Application Program Interface - API) to
+  the service. This makes the Web Service useful to the rest of the
+  Internet, allowing other developers to develop programs that can
+  access your Web Service. This is called the description layer, and
+  the WSDL (Web Service Description Language) standard that will make
+  this happen is under development.
+
+  Above that, there's information that describes the nature of the
+  service itself (not unlike the HTML-descriptive META tags), so that
+  it can be categorised and found on sites that offer Web Service
+  directories. This is the discovery layer, which is currently being
+  addressed by the UDDI (Universal Description, Discovery and
+  Integration) standard.
+
+
+  Both the description and discovery layers are simply XML, governed
+  by a particular format that enables relevant information to be found
+  for all Web Services on the Internet.
+
+
+** XML-RPC
+
+   The two main methods of XML-RPC "message" are methods and
+   parameters. Methods corresponds roughly to php functions you define
+   while parameter correspond to the variables you pass to those
+   functions. Parameters can be one of a number of different types,
+   such as strings, integers and arrays
+
+   An XML-RPC "conversation", between two systems begins with a
+   request form the XML-RPC client, which the server answers with a
+   response. 
+
+
+*** Example Client Request (from your XML-RPC client):
+
+    POST /xmlrpcInterface HTTP/1.0
+    User-Agent: Sitepoint XML-RPC Client 1.0
+    Host: xmlrpc.sitepoint.com
+    Content-type: text/xml
+    Content-length: 195
+    <?xml version="1.0"?>
+    <methodCall>    <methodName>forums.getNumTodaysThreads</methodName>
+   <params>
+   <param><value><string>PHP Development</string></value></param>
+   </params>
+   </methodCall>
+
+*** Example Response from the server
+
+    HTTP/1.1 200 OK
+    Connection: close
+    Content-Length: 148
+    content-Type: text/xml
+    Date: Wed, Jul 28 1999 15:59:04 GMT
+    Server: Sitepoint XML-RPC Server 1.0
+    <?xml version="1.0"?>
+    <methodResponse>
+    <params>
+    <param>
+    <value><int>42</int></value>
+    </param>
+    </params>
+    </methodResponse>
+   

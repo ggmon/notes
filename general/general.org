@@ -1,0 +1,93 @@
+
+** pkg-config
+http://en.wikipedia.org/wiki/Pkg-config
+
+
+pkg-config is a piece of computer software that provides a unified
+interface for querying installed libararies.
+
+it oututs various information about the installed libraries.
+
+- parameters for c or c++ compiler
+- parameters for the linker
+- version of  the package in question
+- presense of a package
+
+*** How it works
+
+When a library is installed, a .pc file should be included and placed
+into a directory with other .pc files (excat directory dependent on
+the distro) This file has several entries.
+
+These entries typically contain the libraries that the other programs
+using the package needs to compile as well as the location of header
+files, version information and a description.
+
+Here is an example .pc file for libpng:
+
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${exec_prefix}/include
+ 
+Name: libpng12 
+Description: Loads and saves PNG files
+Version: 1.2.8
+Libs: -L${libdir} -lpng12 -lz
+Cflags: -I${includedir}/libpng12
+
+
+
+
+
+** Journaling File System
+
+A journaling file system is a file system that logs changes to a
+journal (usually a circular log in a dedicated area) before committing
+them to the main file system. Such file systems are less likely to
+become corrupted in the event of power failure or system crash.
+
+
+** Inode
+
+In computing, an inode is a data structure on a traditional Unix-style
+file system such as UFS. An inode stores basic information about a
+regular file, directory, or other file system object.
+
+The POSIX standard mandates filesystem behavior that is strongly
+influenced by traditional UNIX filesystems. Regular files are required
+to have the following attributes:
+
+
+  * The length of the file in bytes.
+  * Device ID (this identifies the device containing the file).
+  * The User ID of the file's owner.
+  * The Group ID of the file.
+  * The file mode, which determines what users can read, write, and execute the file.
+  * Timestamps telling when the inode itself was last changed (ctime, change time), the file content last modified (mtime, modification time), and last accessed (atime, access time).
+  * A reference count telling how many hard links point to the inode.
+  * Pointers to the disk blocks that store the file's contents (see inode pointer structure).
+
+The stat system call retrieves a file's inode number and some of the
+information in the inode.
+
+
+
+
+
+
+** Public Key Cryptography
+
+   public key cryptography also known as assymetric cryptograpy, is a
+   form of cryptography in which the key used to encrypt a message
+   differs from the key used to decrypt it.
+
+   In public key cryptography, a user has a pair of cryptographic
+   keysâa public key and a private key. The private key is kept
+   secret, while the public key may be widely distributed. Messages
+   are encrypted with the recipient's public key and can only be
+   decrypted with the corresponding private key. The keys are related
+   mathematically, but the private key cannot be practically derived
+   from the public key.
+
+   

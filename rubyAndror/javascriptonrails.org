@@ -1,0 +1,32 @@
+
+
+
+
+* Javascript on Rails 
+http://api.rubyonrails.com/classes/ActionView/Helpers/JavaScriptHelper.html#M000412
+
+RJS - Rails generated Javascript 
+
+include the following in the layout to include the defualt javascript files.
+
+<%= javascript_include_tag :defaults %>
+
+Rails includes the Prototype javascript framework and Scriptaculous
+javascript controls and visuals effects libraray.
+
+
+
+
+** Link to function link_to_function(name, *args, &block)
+
+Returns a link of the given name that will trigger a JavaScript
+function using the onclick handler and return false after the fact. 
+
+
+
+
+
+
+
+
+

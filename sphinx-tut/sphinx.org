@@ -1,0 +1,68 @@
+
+* Sphinx - Full Text Search Server
+
+  Sphinx is an open source full text search server, designed from the
+  ground up with performance, relevance (aka search quality), and
+  integration simplicity in mind.
+  
+
+  A variety of text processing features enable fine-tuning Sphinx for
+  your particular application requirements, and a number of relevance
+  functions ensures you can tweak search quality as well.
+
+
+  Searching via SphinxAPI is as simple as 3 lines of code, and
+  querying via SphinxQL is even simpler, with search queries expressed
+  in good old SQL.
+
+  Sphinx is a search engine. You feed it documents, each with a unique
+  identifier and a bunch of text, and then you can send it search
+  terms, and it will tell you the most relevant documents that match
+  them. If you¡¦re familiar with Lucene, Ferret or Solr, it¡¦s pretty
+  similar to those systems. You get the daemon running, your data
+  indexed, and then using a client of some sort, start searching.
+
+
+  When indexing your data, Sphinx talks directly to your data source
+  itself ¡V which must be one of MySQL, PostgreSQL, or XML files ¡V which
+  means it can be very fast to index (if your SQL statements aren¡¦t too
+  complex, anyway).
+  
+
+** Sphinx Structure
+
+   A sphinx daemon can talk to a colleciton of indexes. Each index
+   tracks a set of documents, and each document is made up of fields
+   and attributes.
+
+
+*** Fields
+    
+    Fields are the content for your search queries- so if you want
+    words tied to a specific document, make sure they're in a field in
+    you index. They are only string data, you could have nos of dates
+    but sphinx will only treat them as strings.
+
+
+*** Attributes
+
+    Are used for sorting, filtering and grouping your search
+    results. Their values do not get paid any attention by sphinx for
+    search terms, though they are limited to the following data types
+    integers, floats,datetimes (as Unix timestamps ¡V and thus integers
+    anyway),booleans, and strings. Take note that string attributes
+    are converted to ordinal integers, which is especially useful for
+    sorting, but not much else.
+    
+
+   
+*** Multi-Value Attributes
+    
+    There is also support in Sphinx to handle arrays of attributes for
+    a single document ¡V which go by the name of multi-value
+    attributes. Currently, only integers are supported, so this isn¡¦t
+    quite as flexible as normal attributes, but it¡¦s worth keeping in
+    mind.
+
+
+    

@@ -1,0 +1,20 @@
+#+STARTUP:overview
+#+STARTUP:hidestars
+#+TITLE: Web Services
+
+
+* Random Ideas
+
+This org should help you organize random Ideas that come up
+
+** TODO Emacs Own Scriplets
+[2008-11-22 Sat]
+
+What I am thinking of is create a set of help script in emacs that
+will just prefill, fill, create back on supplying arguments example
+take the case of switch
+
+run swith on php, should ask you the different case and should
+generate the code for you..
+
+

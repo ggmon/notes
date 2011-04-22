@@ -1,0 +1,8 @@
+#+TITLE: dotnet fundamentals
+#+Author: ggmon
+#+STARTUP: overview
+#+STARTUP: hidestars
+
+
+
+           

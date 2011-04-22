@@ -1,0 +1,62 @@
+* Rails 3
+
+
+
+
+** Commands
+   - create a new project
+   rails new rails3project
+
+   go into the folder that is created and do
+   
+   bundle install
+
+   rails server
+
+   rails generate model article
+
+
+   rails g resource Comment name:string body:text
+
+
+
+** Rails3 and JQuery
+
+   http://joshhuckabee.com/jquery-rails-3
+
+   http://blog.bernatfarrero.com/jquery-and-rails-3-mini-tutorial/
+
+   http://www.railsinside.com/tips/451-howto-unobtrusive-javascript-with-rails-3.html
+
+   curl -L http://code.jquery.com/jquery-1.4.2.min.js > public/javascripts/jquery.js
+   curl -L http://github.com/rails/jquery-ujs/raw/master/src/rails.js > public/javascripts/rails.js
+
+   go to config/initializers
+
+
+
+   
+** Rails3 Authorization and Authentication
+
+   http://ruby-toolbox.com/categories.html
+   
+   http://ruby-toolbox.com/categories/rails_authentication.html
+   http://ruby-toolbox.com/categories/rails_authorization.html
+
+
+
+** Routing
+   
+   *** cool
+   
+   root :to => "home#index" 
+
+   match "/about" => redirect("/aboutus")
+   match "/aboutus" => "info/aboutus"
+
+   resources :products
+   match "/p/:id" => redirect("/products/%{id}/")
+
+
+
+

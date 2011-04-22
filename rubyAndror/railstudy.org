@@ -1,0 +1,5 @@
+
+
+* Changing the database settings
+
+in the folder /config/database.yml

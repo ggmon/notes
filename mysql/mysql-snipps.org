@@ -1,0 +1,46 @@
+#+STARTUP:overview
+#+STARTUP:hidestars
+#+TITLE: Web Services
+
+* MySQL database from Ruby - an example
+
+require "mysql"
+
+myconnect = Mysql::new("localhost","ggmon","ggmon123", "db")
+
+res = myconnect.query("select * from agents")
+
+res.each do | row |
+
+
+
+* Copy data from on table to another
+
+INSERT INTO table1  SELECT a, b, c from table2
+
+The condition is that the quired fields of table2 should match that of table2
+
+
+* Rename a table
+
+ALTER TABLE old_table RENAME new_table
+
+
+RENAME TABLE old_table TO new_table
+
+* Rename a column in a table
+
+alter table orgs change o_id org_id int(11);
+alter table orgs change o_name org_name varchar(64);
+rename table orgs organizations
+
+
+
+* Alter table
+
+alter table orgs add col3 int(11);
+
+
+* To check for index
+
+show index from table_name

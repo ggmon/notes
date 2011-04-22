@@ -1,0 +1,64 @@
+#+TITLE:mono-basics
+#+Author: ggmon
+#+STARTUP: overview
+#+STARTUP: hidestars
+
+
+* Mono:: Basics
+
+Mono, the open source development platform based on the .NET framework, allows developers to build Linux and cross-platform applications with improved developer productivity. Mono's .NET implementation is based on the ECMA standards for C# (http://www.ecma-international.org/publications/standards/Ecma-334.htm) and the Common Language Infrastructure (http://www.ecma-international.org/publications/standards/Ecma-335.htm).
+
+Sponsored by Novell, the Mono project has an active and enthusiastic contributing community. Mono includes both developer tools and the infrastructure needed to run .NET client and server applications. It is positioned to become the leading choice for development of Linux applications.
+
+Mono includes compilers, an ECMA-compatible runtime engine (the Common
+Language Runtime, or CLR), and many libraries. The libraries include
+Microsoft .NET compatibility libraries (including ADO.NET,
+System.Windows.Forms and ASP.NET), Mono's own and third party class
+libraries.Gtk# (http://www.mono-project.com/using/gtk-sharp.html), a
+set of .NET bindings for the gtk+ toolkit and assorted GNOME libraries
+can be found in the latter. This library allows you to build fully
+native Gnome application using Mono and includes support for user
+interfaces built with the Glade interface builder. Furthermore, Mono's
+runtime can be embedded into applications for simplified packaging and
+shipping. In addition, the Mono project offers an IDE
+(http://www.monodevelop.com), Debugging, and a documentation browser. 
+
+** References
+
+http://mono-project.com/Mono_Basics
+
+http://mono-project.com/About_Mono
+
+        
+** Console Hello World
+
+To test the most basic functionality
+
+Using System;
+
+public class HelloWorld {
+       
+       static public void Main () {
+              
+              Console.WriteLine("Hello Mono World");
+       }
+}
+
+
+*** To compile, use mcs:
+
+mcs hello.cs -pkg:gtk-sharp-2.0
+
+
+Using mcs to compile produces a .Net 1.1 assembly. To create a .Net
+2.0 assembly, use gmcs:
+
+gmcs hello.cs -pkg:gtk-sharp-2.0
+
+
+Either compiler will create "hello.exe", which you can run using:
+
+mono hello.exe
+
+
+

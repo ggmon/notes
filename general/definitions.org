@@ -1,0 +1,10 @@
+#+STARTUP:overview
+#+STARTUP:hidestars
+#+TITLE:definitions
+
+
+* Polymorphism
+
+Ability to take on different forms or shapes.
+
+Two kinds Inheritance polymorphism

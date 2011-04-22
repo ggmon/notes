@@ -1,0 +1,22 @@
+#+STARTUP:overview
+#+STARTUP:hidestars
+#+author:ggmon
+
+* Java,tomcat,ant set up
+
+extract all the archives to a directory and set up .bashrc so that
+java binaries, ant etc are in you path
+
+JAVA_HOME=/opt/java/jdk
+ANT_HOME=/opt/java/ant
+CATALINA_HOME=/opt/java/tomcat
+
+PATH=$PATH:$JAVA_HOME/bin:$ANT_HOME/bin
+
+
+** Tomcat
+
+The conf/tomcat-users.xml will contain the credentials to let you use
+this webapp.
+
+you will need to add manager role to the config file

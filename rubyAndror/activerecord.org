@@ -1,0 +1,109 @@
+
+* A Guide to Active Record Associations
+
+** Associations
+
+With Active record associations, we can declaritievly tell rails that there is a connection 
+between two models.
+        
+** Types of associations
+
+In rails, an association is a connection between two Active Record models. Rails support six type
+of association
+
+belongs_to
+
+has_one
+
+has_many
+
+has_many :through
+
+has_one :through
+
+has_and_belongs_to_many
+
+
+** The belongs_to association
+
+for example, if your application includes customers and orders, and each customer can be assigned to 
+excatly one customer,
+
+
+class Order < ActiveRecord::Base
+ belongs_to :customer
+end
+   
+
+
+** The has_one association
+
+A has_one association also sets up a one-to-one association with anothe model. For example if each 
+supplier in your application has only one account, you will declare the supplier model like this.
+
+class Supplier < ActiveRecord::Base
+ has_one :account
+end
+
+** The has_many association
+
+A has_many association indicates a one-to-many connection with another model. You will often find this
+association on the other side of a belongs_to association.For example, in a application containing 
+customers and orders, the custormer model could be declared like this
+
+
+class Customer < ActiveRecord::Base
+  has_many :orders
+end 
+
+
+** The has_many :through Association
+
+A has_many :through association is often used to set up a many-to-many connection with another model.This
+association indicates that declaring model can be matched to zero or more instances of another model by 
+proceeding through a third model.
+
+For example, consider a medical pracitce where patients make appointments to see physicians. 
+
+class Physician < ActiveRecord::Base
+  has_many :appointments
+  has_many :patients :through=> :appointments  
+end
+
+class Appointment < ActiveRecord::Base
+  belongs_to :physician
+  belongs_to :patient
+end
+
+class Patient < ActiveRecord::Base
+  has_many :appointments
+  has_many :physicians, :through => :appointments
+
+end
+
+
+
+
+
+** STI
+
+class Lookup < ActiveRecord::Base
+
+end
+
+class LookupType1 < Lookup
+
+end
+
+
+** Polymorphic tables
+
+class Activity < ActiveRecord::Base
+  belongs_to  :subject, :polymorphic => true
+end 
+
+In the  Activity table we say this table is polymorphic by the directive
+belong_to :subject, polymorphic => true
+
+to be polymorphic in the table we should have two fields subject and subject_id
+

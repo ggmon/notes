@@ -1,0 +1,3 @@
+
+* Devleopment log
+- rails g resource Article publication_name:string url:string heading:text sub_heading:text dop:date promtional_text:text content:text reference:user

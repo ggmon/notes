@@ -1,0 +1,11 @@
+
+
+* Reconfiguring on Fedora
+
+  /usr/sbin/firstboot --reconfig
+
+
+  The program which sets up the display is
+
+  /usr/bin/system-config-display.
+

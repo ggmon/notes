@@ -1,0 +1,38 @@
+
+* Ajax uploads and attachments
+
+- Step 1
+
+choose your plugin - attachment-fu
+
+- Step 2
+
+Choose your image processing library
+
+1. image_scienc light ruby wrapper over FreeImage library.
+
+2. RMagick a ruby wrapper around the ImageMagick/GraphicsMagik
+
+3. minimagick another wrapper around ImageMagick,
+
+
+gem install mini_magick
+
+Successfully installed mini_magick-1.2.3
+1 gem installed
+Installing ri documentation for mini_magick-1.2.3...
+Installing RDoc documentation for mini_magick-1.2.3...
+
+script/plugin install http://svn.techno-weenie.net/projects/plugins/attachment_fu/
+
+
+
+- Step 3
+
+Add uploading to your code
+
+ruby script/generate scaffold asset filename:string
+content_type:string size:integer width:integer height:integer
+parent_id:integer thumbnail:string created_at:datetime
+
+

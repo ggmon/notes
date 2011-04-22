@@ -1,0 +1,86 @@
+
+* Setting Up postgres sql in Ubuntu - Karmic Koala
+
+  Install the postgres 
+  
+  sudo apt-get install postgresql
+  
+  Install the pgadmin3
+
+  sudo apt-get install pgadmin3
+
+  Create a new user ggmon
+  
+  sudo -u postgres createuser -D -A -P ggmon
+
+  create a new database livia  with permission for ggmon
+  sudo -u postgres createdb -E utf8 -O ggmon livia
+  
+  
+  sudo -u postgres psql postgres
+  
+  ALTER USER postgres WITH PASSWORD 'NewAdminDatabasePassword';
+
+  create sequence pk_seq;
+  CREATE SEQUENCE                
+  livia=> create table my_data ( 
+  livia(> data_pk  integer DEFAULT  nextval('pk_seq'::text) NOT NULL,
+  livia(> my_value integer);
+
+  
+* taking dump and restoring it
+
+  pg_dump -h 10.50.4.154 -U livia livia_portal_dev_18022010  > livia_portal.sql
+
+  pgsql livadb < livia_portal.sql
+
+
+* describe tables
+
+  show tables
+
+  \dt
+
+  \d tablename
+
+
+
+* How I gave user 'ggmon' the permission to createdb
+
+  This will loging to the postgres db as user postgres
+  
+  sudo -u postgres psql postgres
+
+  Now if you run the query 
+
+  select * from pg_user 
+
+  | usename  | usesysid | usecreatedb | usesuper | usecatupd | passwd   | valuntil | useconfig |
+  |----------+----------+-------------+----------+-----------+----------+----------+-----------|
+  | postgres |       10 | t           | t        | t         | ******** |          |           |
+  | ggmon    |    16385 | f           | f        | f         | ******** |          |           |
+
+  
+  now if you run the query in psql
+
+  ALTER USER ggmon CREATEDB  
+
+  and now run the  query
+
+  select * from pg_user 
+
+  | usename  | usesysid | usecreatedb | usesuper | usecatupd | passwd   | valuntil | useconfig |
+  |----------+----------+-------------+----------+-----------+----------+----------+-----------|
+  | postgres |       10 | t           | t        | t         | ******** |          |           |
+  | ggmon    |    16385 | t           | f        | f         | ******** |          |           |
+  
+
+  
+
+
+  
+  
+
+* Refreneces
+
+  http://www.commandprompt.com/ppbook/c18591

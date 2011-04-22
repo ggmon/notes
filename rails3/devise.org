@@ -1,0 +1,47 @@
+
+* Devise
+
+  http://media.railscasts.com/videos/209_introducing_devise.mov
+
+
+  go to the gem file
+
+  gem 'devise'
+
+
+  inside you application.rb and remove the intializer for jquery if you have
+  config.action_view.javascript_expansions[:defaults] = ['jquery-1.4.2', 'rails']
+
+    create  config/initializers/devise.rb
+      create  config/locales/devise.en.yml
+
+===============================================================================
+
+Some setup you must do manually if you haven't yet:
+
+  1. Setup default url options for your specific environment. Here is an
+     example of development environment:
+
+     config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+     This is a required Rails configuration. In production it must be the
+     actual host of your application
+
+  2. Ensure you have defined root_url to *something* in your config/routes.rb.
+     For example:
+
+       root :to => "home#index"
+
+  3. Ensure you have flash messages in app/views/layouts/application.html.erb.
+     For example:
+
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
+===============================================================================
+
+
+  
+** customizing views
+   
+   rails g devise_views

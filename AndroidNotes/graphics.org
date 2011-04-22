@@ -1,0 +1,67 @@
+
+* Open GL
+  is a 2d and 3d graphics API that was developed by Silicon Graphics,
+  we will be looking at Open GL ES and EGL
+
+* Open GL ES
+  like open gl is a C-based, flat API, so we need to use the Java-bindings
+  
+  javax.microedition.khronos.egl
+  javax.microedition.khronos.opengles
+  javax.nio
+
+
+* Fundamentals of OpenGL
+
+  glVertexPointer, glDrawElements, glColor, glClear, gluLookAt, glFrustum, glViewport
+
+  in opengl, you draw in 3D space. so you start out by specifying a set of points, also
+  called vertices. These points are then  join together
+
+  OpenGL ES offers two primary methods to facilitate drawing.
+  
+  glVertexPointer and glDrawElements
+  glVertexPointer uses the coordianates to draw and glDrawElemnets uses the primitive
+  shapes to draw.
+
+** glVertexPointer
+   
+   #+BEGIN_EXAMPLE
+   float[] coords = {
+         -0.5f, -0.5f, 0,
+         -0.5f, -0.5f, 0,
+         -0.5f, -0.5f, 0
+   }
+   #+END_EXAMPLE
+
+   Your assumption is that origin is the center of the display, The z axis will be
+   going negative into the display, x will go positive to the right
+
+   To draw points you need to pass the coordinates to OpenGL ES through the glVertexPointer
+   method, For efficiency reason, glVertexPointer takes a native buffer that is language
+   agnostic rather that an array of floats. For this, you need to convert Java-based
+   array of floats to an acceptable C-like buffer, we will need to use the java.nio
+   classes to convert the float array to native buffer.
+
+   #+BEGIN_EXAMPLE
+   java.nio.ByteBuffer vbb = java.nio.ByteBuffer.allocateDirect(3*3*4);
+   vbb.order(ByteOrder.nativeOrder());
+   java.nio.FloatBuffer mFVertexBuffer = vbb.asFloatBuffer();
+
+   glVertexPointer(
+   // Are we using (x,y) or (x,y,z) in each point
+   3,
+   // each value is a float value in the buffer
+   GL10.GL_FLOAT,
+   // Between two points there is no space
+   0,
+   // pointer to the start of the buffer
+   mFVertexBuffer);   
+   #+END_EXAMPLE
+
+  
+
+http://www.youtube.com/watch?v=dBnniua6-oM
+  
+  
+  

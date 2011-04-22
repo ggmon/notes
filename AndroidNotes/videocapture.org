@@ -1,0 +1,40 @@
+
+* Video Capture on Android
+
+** Supported Formats
+   
+   IN general Android’s support is consistent with other mobile phones. It supports the 3GP
+   (.3gp) and MPEG-4 (.mp4) file formats. 3GP is a video standard derived from MPEG-4
+   specifically for use by mobile devices.
+
+   As far as codecs go, Android supports H.263, a codec designed for low-latency and
+   low-bitrate videoconferencing applications. H.263 video is supported in either MPEG-4
+   (.mp4) or 3GP (.3gp) files. Android also supports MPEG-4 Simple Profile in 3GP files
+   (.3gp) as well as H.264.
+   H.264 is also referred to as MPEG-4 part 10 or AVC (Advanced Video Coding). It is one
+   of the contenders for the video codec crown and probably offers the widest amount of
+   support across software and hardware. H.264 is supported by Silverlight, Flash,
+   iPhone/iPod, Blu-ray devices, and so on. Android supports H.264 encoded video in the
+   MPEG-4 container format (.mp4)
+
+
+   Android probably also supports WebMobil
+   (Android 3.0 and later), the open and royalty-free media container that holds VP8-
+   encoded video and Vorbis-encoded audio. WebM was introduced shortly after Google
+   acquired On2 Technologies and released the VP8 codec into the public domain.
+
+
+** Playback using Intent
+
+#+BEGIN_EXAMPLE
+   Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+   Uri data = Uri.parse(Environment.getExternalStorageDirectory().getPath() +
+   "/Test_Movie.m4v");
+   intent.setDataAndType(data, "video/mp4");
+   startActivity(intent);
+#+END_EXAMPLE
+
+
+
+** Mediastore
+   

@@ -1,0 +1,66 @@
+
+** Installing Java on Interpid ibex
+
+http://www.javadesign.info/SystemsHardware/OS/Ubuntu/install-java-on-ubuntu
+
+The easiest ways is to make use of apt-get command in ubuntu.
+
+*** Setup Repository.
+	sudo gedit /etc/apt/sources.list
+
+Ensure that the following two sources are added to the configuration file:
+
+deb http://za.archive.ubuntu.com/ubuntu/ intrepid main restricted
+deb http://za.archive.ubuntu.com/ubuntu/ intrepid multiverse
+
+
+After the configuration file is updated, the package repository needs
+to updated with the following command:
+
+sudo apt-get update
+
+** Install Java Package
+
+After the package repository was sucessfully updated, the Sun java
+packages can be installed on the Ubuntu system. The Sun Java package
+consist of Java 5 and Java 6 packages. Depending on the version that
+is required, the list of packages specified below can be installed
+
+*** Java 5
+ sun-java5-bin
+ sun-java5-fonts
+ sun-java5-plugin
+ sun-java5-demo
+ sun-java5-jdk
+ sun-java5-source
+ sun-java5-doc
+ sun-java5-jre
+ sun-java5-src
+
+
+*** Java 6
+ sun-java6-bin
+ sun-java6-javadb
+ sun-java6-plugin
+ sun-java6-demo
+ sun-java6-jdk
+ sun-java6-source
+ sun-java6-doc
+ sun-java6-jre
+ sun-java6-src
+ sun-java6-fonts
+ sun-java6-jre-headless
+
+
+to install
+
+$sudo apt-get install sun-java6-jre sun-java6-jdk sun-java6-plugin
+
+to list the available Java runtime environments on the Ubuntu System
+
+$update-java-alternatives -l
+
+To change from one version to another, the following command can be
+used
+
+$sudo update-java-alternatives -s <JRE Version>

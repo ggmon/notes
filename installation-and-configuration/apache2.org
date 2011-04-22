@@ -1,0 +1,13 @@
+* Apache On Ubuntu
+  
+  sudo apt-get install apache2
+
+  apache is configured by placing directives in plain text files, the main configuation file is called
+  apache2.conf and is in /etc/apache2/apache2.conf
+
+  
+  
+
+** Refrences
+https://help.ubuntu.com/6.06/ubuntu/serverguide/C/httpd.html
+

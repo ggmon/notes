@@ -1,0 +1,17 @@
+#+Author: ggmon
+#+STARTUP: overview
+#+STARTUP: hidestars
+
+
+* HMTL snippets 
+
+** Create a scrollable div
+
+   <div style="border : solid 2px #ff0000; background : #000000;
+   color : #ffffff; padding : 4px; width : 200px; height : 50px;
+   overflow : auto; ">
+   </div>
+
+   set height width and set overflow to auto
+
+

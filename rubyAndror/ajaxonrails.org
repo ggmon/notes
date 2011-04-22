@@ -1,0 +1,52 @@
+* Ajax on ruby on rails
+
+Module for this is
+ Actionview::Helpers::javaScriptHelper
+
+ http://rails.rubyonrails.com/classes/ActionView/Helpers/JavaScriptHelper.html
+
+
+
+include the following in the layout to include the defualt javascript files.
+
+
+<%= javascript_include_tag :defaults %>
+
+
+<div id="test">
+  <%= link_to_remote "Ajax Test",
+      :url => {
+       :controller =>"ajax",
+       :action => "demo"},
+      :update => "test",
+      :loading => "status"
+
+  %>
+
+  <%= remote_function(:url) %>
+
+
+
+</div>
+
+
+** link_to_remote
+
+The link to remote arguments are as follows.
+
+- :update
+- :url
+- :unitialized
+- :loading
+- :loaded
+- :interactive
+- :complete
+
+
+update denotes which HTML node to return the final text to.
+
+loading This is the name of the javascript callback function to call
+once the page is set loading.
+
+complete The name of the javascript callback fucntion to call once the
+request is complete

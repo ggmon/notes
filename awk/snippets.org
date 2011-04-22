@@ -1,0 +1,8 @@
+* Awk Snippets
+
+** Find the files which have to be added
+
+svn add `svn st | awk '/\?/ {print $2}'`
+
+
+

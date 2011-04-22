@@ -1,0 +1,41 @@
+
+* Rails - Test Driven Environment
+
+  Cucumber, Rspec, WebRat and Factory Girl
+
+  WebRat depends on Nokogiri
+
+  $ sudo aptitude install libxslt1-dev libxml2-dev
+
+  sudo gem install cucumber rspec webrat mechanize
+
+  
+
+* For cucumber to be working with rails 
+
+  gem install cucumber-rails
+
+  form your project folder (rails app) issue the command
+
+  ruby  script/generate cucumber
+
+  
+
+** Issues I had
+   
+   When I had set up all the scenarios and steps and run "rake cucumber"
+   I got some error sayinig
+   
+   " thread tried to join itself  in eval visit"
+
+   after googling i got this link https://rails.lighthouseapp.com/projects/8994/tickets/3153
+   and they had a patch which I applied, which solved the issue
+
+
+
+  
+
+
+
+
+  

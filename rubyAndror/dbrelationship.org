@@ -1,0 +1,44 @@
+#+TITLE:Defining Relationship Between Objects
+#+Author: ggmon
+#+STARTUP: overview
+#+STARTUP: hidestars
+
+
+* Defining Relationship Between Objects
+
+
+  The primary types of database associations are 
+  - one-to-one associations
+  - one-to-many associations
+  - many-to-many associations
+
+** Some examples
+
+   - An author can have one weblog
+   
+   class Author < ActiveRecord::Base
+      has_one :weblog
+   end
+
+   - An author can submit many stories
+   
+   class Author < ActiveRecordd::Base
+      has_many :stories
+   end       
+
+   - A story belongs to an author
+
+   class Story < ActiveRecord::Base
+      belongs_to :author
+   end
+
+   - A story has and belongs to many, different topics
+   
+   class Story < ActiveRecord::Base
+      has_and_belongs_to_many :topics
+   end
+        
+   class  Topic < ActiveRecord::Base
+      has_and_belongs_to_many :stories
+   end
+

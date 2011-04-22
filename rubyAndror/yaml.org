@@ -1,0 +1,5 @@
+
+* YAML in ruby
+
+f = File.open("images.yaml",'r')
+data = YAML.load(f.read)

@@ -1,0 +1,80 @@
+
+
+* Skip before filter
+
+When you have defined before_filer in applicationcontroller.rb and now you need to
+skip this filter in a method in one of the controllers you can use the skip_before_filter
+
+
+class ApplicationController < ActionController::Base
+before_filter :check_user_logged_in
+
+
+
+
+class UsersController < ApplicationController
+skip_before_filter :check_user_logged_in, :only => ["login", "authenticate"]
+
+
+http://duffsdevice.blogspot.com/2008/08/inheriting-beforefilters-and-naming.html
+
+
+
+* named scope
+
+  class Product < ActiveRecord::Base
+    belongs_to :category
+    named_scope :cheap, :conditions => { :price => 0..5 }
+    named_scope :recent, lambda { |*args| {:conditions => ["released_at > ?", (args.first || 2.weeks.ago)]} }
+    named_scope :visible, :include => :category, :conditions => { 'categories.hidden' => false }
+  end
+
+  you could extend your named scope with custom functionality
+  
+  class Post < ActiveRecord::Base
+    named_scope :unpublished, :conditions=>{:published => true} do
+      def publish
+        each {|p| p.update_attribute(:published, true)}
+      end
+    end    
+  end
+
+  now you can published all unpublished posts for a user
+
+  user.posts.unpublished.publish
+  
+  
+
+
+  
+
+* All the Base Classes
+
+  If you want to enhance a model, view, or controller, or indeed routing,
+  here are the appropriate classes to include or extend.
+
+
+  | Base Class                         | Modifiers                                             |
+  |                                    |                                                       |
+  | ActiveRecord::Base                 | Models                                                |
+  |                                    |                                                       |
+  | ActionView::Base                   | Views. Including a module into                        |
+  |                                    | this class is the same as writing                     |
+  |                                    | an ApplicationHelper method that can be               |
+  |                                    | called anywhere from any view. However                |
+  |                                    | plugins cant access ApplicationHelper                 |
+  |                                    | so you must use this class instead                    |
+  |                                    |                                                       |
+  | ActionController::Base             | Controllers. Call helper_methods if you               |
+  |                                    | want to add an instance method to both                |
+  |                                    | controllers and views                                 |
+  |                                    |                                                       |
+  |                                    |                                                       |
+  | ActionController::Routing::Routset | Routing, Overrides or decorate extract_request        |
+  |                                    | _environment to pull extra data out of request        |
+  |                                    |                                                       |
+  | ActionController::Routing:Route    | Routing, Overrides or decorate recognition_conditions |
+  |                                    | to discern routes using the extra data you extracted  |
+  |                                    |                                                       |
+
+

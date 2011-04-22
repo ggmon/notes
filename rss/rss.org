@@ -1,0 +1,62 @@
+
+
+
+* Really Simple Syndication
+
+  I keep asking myself what does “syndicate” mean. I would say that
+  Syndicators are systems that make any content available as an XML
+  feed. When syndicators syndicate content, this is called syndication.
+  Right ?
+
+  So why do so many blogs, especially Movable Type powered ones, write
+  “Syndicate this site” rather than “Aggregate this site?”
+
+
+  One of the meanings of syndication is the distribution of content to
+  multiple locations for simultaneous publication. So in that sense,
+  syndication is a good term for what is occurring. However, the act of
+  consuming the content (what the end users are doing when they
+  “syndicate this site”) is not technically syndication.
+
+
+  While “aggregate this site” is probably a better description,
+  “syndicate” is in common use and probably won’t go away anytime
+  soon. But I’d argue that neither term is very good if you want
+  mainstream Internet users to pick up on content feeds
+
+
+
+#+BEGIN_EXAMPLE
+  render :layout => false
+  response.headers["Content-Type"] = "application/xml; charset=utf-8"
+#+END_EXAMPLE
+
+  In th view side
+#+BEGIN_EXAMPLE
+
+  xml.instruct!
+  xml.rss "version" => "2.0" do
+  xml.channel do
+   xml.title       "GoFISHn.com updates by  #{@user.full_name}"
+   xml.link        url_for(:only_path => false, :controller => 'profile_objects', :action=>"show", :subdomain=>@user.subdomain)
+   xml.description "GoFISHn updates by #{@user.full_name}"
+    @objects.each do |object|
+       xml.item do
+         xml.title object.title
+         xml.link  get_profile_object_show_path(object.user, object)
+         xml.description teaser(object.show_content,1000)
+         #xml.description object.show_content
+         xml.pubDate object.updated_at
+         xml.guid  get_profile_object_show_path(object.user, object), :ispermaLink=>"true"        
+       end
+    end
+  end
+ end
+#+END_EXAMPLE
+
+
+** References
+
+   http://www.rssboard.org/rss-specification#sampleFiles
+
+   http://paulsturgess.co.uk/articles/show/13-creating-an-rss-feed-in-ruby-on-rails

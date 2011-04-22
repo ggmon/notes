@@ -1,0 +1,15 @@
+
+* WebRat
+  
+
+** Core API functions
+   
+   - visit
+   - click_link
+   - fill_in
+   - check
+   - uncheck
+   - choose
+   - select
+   - attach_file
+   - click_button

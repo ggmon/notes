@@ -1,0 +1,57 @@
+
+* Starting Solr
+
+  Solr is an open source search server, written in java, that
+  communications using standards such as HTTP and XML,
+  
+  #+BEGIN_EXAMPLE
+  DB->data->Solr->Web
+  #+END_EXAMPLE
+
+** Lucene
+
+  Lucene, the underlying engine is Apache Lucene, the core technology
+  underlying it.
+
+  - Lucene is a high performance text search engine library
+
+  The major features in lucene are 
+
+  - A text-based inverted index persistance storage for efficient
+    retrievel of documents by indexed terms
+
+  - A rich set of text analysers to tranform a string of text into a
+    series of stream, which are the fundamental units indexed and
+    search
+
+  - A query syntax with a parser and a variety of query types from a
+    simple term lookup to exotic fuzzy matches
+
+  - A good scoring algorithm based on sound Information Retrieval (IR)
+    principles to produce the more likely candidates first, with flexible means
+    to affect the scoring
+    
+   - A highlighter feature to show words found in context
+
+   - A query spellchecker based on indexed content
+
+
+** Solr, The Server-ization of Lucene.
+
+   Most Solr's features are distinct from Lucene, such a faceting, but
+   not far into the implementation.
+
+   - HTTP request processing for indexing and quering documents.
+   - Several caches for faster query  process
+   - A web-based administrative interface including:
+     - Run time performance statistics inclduing cache hit/miss
+     - a query form to search the index    
+     - a scheme browser with histograms of popular terms along with
+       some statistics
+     - Details breakdown of breakdown of scoring mathematics and text
+       analysis phase
+   - Configuration files 
+
+
+
+    

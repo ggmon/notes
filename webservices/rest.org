@@ -1,0 +1,15 @@
+#+STARTUP:overview
+#+STARTUP:hidestars
+#+TITLE: Web Services
+
+
+* REST - representational state transfer.
+
+Is a style of software architecture or distributed hypermedia systems such as
+World Wide Web.
+
+REST strictly refers to a collection of network architecture principle
+which outline how resources are defined and addressed. The term is
+often used in a lesser sense to describe any simple interface which
+transmits domain-specific data over HTTP without additional messaging
+layer such as SOAP or session tracking via HTTP cookies.

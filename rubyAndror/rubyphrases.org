@@ -1,0 +1,20 @@
+#+TITLE:rubyphrases
+#+Author: ggmon
+#+STARTUP: overview
+#+STARTUP: hidestars
+
+* Ruby Phrases
+
+** Converting Between Types
+
+In ruby everything is an object, absolutely everything around is an
+object: an instance of a class. Also the rigidness that comes with
+statically typed language is rigid. For example, the #puts method will
+accept any object which responds to a #to_s method call. This type of
+behaviour is called duck typing
+
+*** Number from a string
+
+String_i scans the literal value of the object and returns the value
+as an Integer. Similary String_f scans the literal value of an object
+and returns the value as a Float.

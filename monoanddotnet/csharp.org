@@ -1,0 +1,195 @@
+#+TITLE:C#
+#+Author: ggmon
+#+STARTUP: overview
+#+STARTUP: hidestars
+
+
+* C-sharp
+
+** The Structure of a C# Progaram
+
+Namespace::A namespace defines scope with an associated unique
+identifiew; this is an arbitary name and allows you to organize code
+into namespaces for clear lines of responsibility
+
+File:: All code must exist in a file that is then compiled. In the
+HelloWorld example you stored the code in a file called helloworld.cs
+
+Class:: A class is a template for an entity that you want to exist in
+your code; 
+
+....................................
+. Executable                       .
+.                                  .
+. ...............................  .
+. . Namespace                   .  .
+. .  ........................   .  .
+. .  . File:hello.cs        .   .  .
+. .  . ..................   .   .  .
+. .  . . class:Hello    .   .   .  .
+. .  . ..................   .   .  .
+. .  ........................   .  .
+. ...............................  .
+....................................
+                    
+                    
+** Variables and Types
+
+***Unified Type system.
+
+Unified type system is a holistic name for the CLS and CTS, the two
+specifications that ensure compatiblity between .NET language
+implementations 
+
+The C# language type system contains the following categories.
+
+1. Value types
+2. Reference types
+3. Pointer types
+
+Pointer types are and advanced topic and are related to languages that
+run in an "unmanaged" environment, which does not include c#.
+
+
+all value types are compatible with the object type defined within the
+C# langugae. This means all objects descend, or inherit form the base
+object type within C#,
+
+**** Value Types
+
+Value type is associated with a vallue of a given type based on the
+types available; for example an integer
+
+| Value Type | Description          | Class Type     | Range         |
+|            |                      |                |               |
+| bool       | Typically used       | System.Boolean | True or false |
+|            | as flag to indicate  |                |               |
+|            | true or false        |                |               |
+|            |                      |                |               |
+| char       | Unicode character    | System.char    | Unicode       |
+|            |                      |                |               |
+|            |                      |                |               |
+| sbyte      | Signed single byte   | System.SByte   | -128..127     |
+|            |                      |                |               |
+| byte       | UnSigned single byte | System.Byte    | 0..255        |
+|            |                      |                |               |
+|            |                      |                |               |
+| short      |                      | System.Int16   |               |
+|            |                      |                |               |
+| ushort     |                      | System.UInt16  |               |
+|            |                      |                |               |
+| int        |                      | System.Int32   |               |
+|            |                      |                |               |
+| uint       |                      | System.UInt32  |               |
+|            |                      |                |               |
+| long       |                      | System.Int64   |               |
+|  n         |                      |                |               |
+| ulong      |                      | System.UInt64  |               |
+|            |                      |                |               |
+| float      |                      | System.Single  |               |
+|            |                      |                |               |
+| double     |                      | System.Double  |               |
+|            |                      |                |               |
+| decimal    |                      | System.Decimal |               |
+|            |                      |                |               |
+
+
+
+***** Type conversion
+
+You can convert one variabe type to another using the C#language. In
+some cases this is handled automatically, but in other cases you may
+need to manually indicated the conversion you want with something
+called a cast
+
+Type compatibility
+
+| Type     | Compatibility                            |
+| Unsigned | byte>char>ushort>uint>ulong>float>double |
+|          |                                          |
+| Signed   | sbyte>short>int>long>float>double        |
+|          |                                          |
+| Other    | char>ushort                              |
+
+
+If you want to conver a variable of type double to a variable of type
+decimal , you requeire an explicit conversion, or a casr.
+
+double dbl = 36.12;
+decimal dcm = (double) dbl;
+
+double floating = 10.45
+int casted_float = (int) floating;
+
+
+
+
+
+
+
+
+
+
+
+
+
+**** Reference Types
+
+In contrast to value types, Reference types are user-defined types and
+do not hold values  but merely point to a location where a value is
+held in computer's memory.
+
+When reference types are declared but unassigned, reference type
+(unlike value types)  are not initialized to a value and point to
+nothing , also called null.
+
+
+**** Enumeration 
+
+An enumeration is a special type of reference type
+
+enum weekdays { monday, tuesday, wednesday, thursday, friday}
+
+weekdays BestDayOfTheWeek = weekdays.friday;
+
+
+**** Arrays
+
+char []me = new char[4];
+
+char [][]multime = new char[3][];
+
+
+**** Collections
+
+The .Net framework provides you with a number of specialized
+colleciton classes
+
+usually contained in the following classes.
+System.Collections, Systems.Collection.Specialized
+
+Some of the type are
+
+- ArrayList
+- HashTable
+- SortedList
+- StringCollection
+
+
+**** Strings
+
+The System.String class is worth special mention; applications
+typically tend to use it frequently.You can use the System.String
+class or the standard type string interchangeably.
+
+They are immutable
+
+
+
+
+
+
+
+
+
+

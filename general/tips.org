@@ -1,0 +1,80 @@
+#+STARTUP: overview
+#+TAGS:
+
+* Tips and Tricks on Anything
+
+** Mplayer 
+
+*** References
+
+    mplayer manual [[http://www.mplayerhq.hu/DOCS/HTML/en/][mplayer]]
+    
+    everyday linux manual http://liquidweather.net/howto/index.php?id=98
+
+*** Tips 
+
+**** show and jerky playback
+     
+     if your dvd playback is slow or jerky, add the cache and cache-min options to the 
+     command line like this
+
+     mplayer -cache 8912 -cache-min 4 dvd://1
+
+     What this means you will have an 8MB cache, which should be plenty for a dvd. It will
+     also fill the cache to 4% before starting, and the buffer should build up from there.
+
+***** Subtitle font size
+
+      mplayer -subfont-text-scale 3 
+
+
+
+ 
+ 
+*** Config File
+
+    Mplayer has some cool configuration options. The file is ~/.mplayer/config.
+
+    1. Global
+    /etc/mplayer/mplayer.conf
+
+    2. Local
+    ~/.mplayer/config
+    ~/.mplayer/input.conf
+    ~/.mplayer/menu.conf
+
+    
+    Configuration format is one command per line and # for comments
+    
+    Config
+    OPTION="PARAMETER"
+    
+    Example
+    vo="xv"
+
+    Input Keyboard/joystick/mouse/LIRC bindings
+
+    Bindings for the keyboard,mouse, and joystick are set in input.conf and can be placed
+    in ~/.mplayer/input.conf
+    
+    
+    
+    
+
+
+** 64 bit Flash player (alpha release on linux)
+
+*** References
+http://download.macromedia.com/pub/labs/flashplayer10/libflashplayer-10.0.d20.7.linux-x86_64.so.tar.gz
+    
+    
+
+*** Tips
+
+tar zxvf libflashplayer-10.0.d20.7.linux-x86_64.so.tar.gz
+sudo cp libflashplayer.so /usr/lib/mozilla/plugins/ 
+
+echo "Linking the libraries so Firefox and apps depending on XULRunner (vuze, liferea, rsswol) can find it."
+sudo ln -sf /usr/lib/mozilla/plugins/libflashplayer.so /usr/lib/firefox-addons/plugins/
+sudo ln -sf /usr/lib/mozilla/plugins/libflashplayer.so  /usr/lib/xulrunner-addons/plugins/
+

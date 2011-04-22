@@ -1,0 +1,54 @@
+
+* Ruby On Rails Snippets
+
+
+
+** Filters
+   
+   http://api.rubyonrails.org/classes/ActionController/Filters/ClassMethods.html
+
+*** before_filter(*filters, &block) 
+
+    before_filter :authorize, :except => [:show, :search]
+    before_filter :authorize, :only => [:show, :search]   
+
+    
+
+*** form_for
+
+  <% form_for :person, :url => { :action => "update" } do |f| %>
+    <%= f.error_messages %>
+    First name: <%= f.text_field :first_name %><br />
+    Last name : <%= f.text_field :last_name %><br />
+    Biography : <%= f.text_area :biography %><br />
+    Admin?    : <%= f.check_box :admin %><br />
+  <% end %>
+
+*** form_tag
+
+  <% form_tag  edit_user_maps_list_path(@user) do -%>
+
+  
+
+
+*** Partials
+
+ <%= render :partial => "/maps/map_list", :collection=>@user_maps, :as=>:user_map -%>    
+
+
+*** html
+
+    select(:album,:comment_id,album.comments.map {|c| [c.status,c.id]})
+    link_to(image_tag("edit_icon.jpg"),edit_user_photo_path(@user,album))
+    image_tag("delete_icon.jpg")
+	     
+
+     link_to_remote (image_tag("/images/createchild.jpeg", :size => "17x17", :border => 0), 
+:url => {:action => 'acton_inside_controller', :id => record.id })
+                        
+
+<%= link_to_remote(image_tag("delete_icon.png", :border => 0), :url =>user_map_path(@user,map),:method=>:delete, :confirm => 'Are you sure?')-%>
+
+** providing locaal varialble to partilas
+<%= render :partial => 'form', :locals => {:f =>f} -%>
+

@@ -1,0 +1,17 @@
+
+
+** Ruby Case statement
+
+   car = "Patriot"
+   
+   manufacturer = case car
+   	when "Focus": "Ford"
+	when "Navigator": "Lincoln"
+	when "Camry": "Toyota"
+	when "Civic": "Honda"
+	when "Patriot": "Jeep"
+	else "unknown"
+   end	
+
+   puts "The" + car + "is made by " + manufacturer
+	

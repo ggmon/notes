@@ -1,0 +1,27 @@
+
+
+
+* Rails on fedora core 
+
+- Fedora Core
+- Ruby on Rails
+- Mongrel Ruby Application Server
+- Lighthttpd Web Server
+- Various Plumbing and Configuration
+
+
+
+* Command
+
+yum install ruby ruby-devel rubygem-rails rubygem-mongrel lighttpd
+lighttpd-fastcgi
+
+
+
+
+
+
+
+* references
+  http://legacy.not404.com/RailsOnFC6
+  

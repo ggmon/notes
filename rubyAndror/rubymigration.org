@@ -1,0 +1,8 @@
+
+* Migration Snippets
+
+
+** To Up or down a particular migration
+
+rake db:migrate:up VERSION=20090520131004 --trac
+rake db:migrate:down VERSION=20090520131004 --trace

@@ -1,0 +1,22 @@
+#+Author: ggmon
+#+STARTUP: overview
+#+STARTUP: hidestars
+
+
+* Canvas Tutorials
+
+
+<canvas> is a new HTML element which can be used to draw graphics
+using scripting (usually JavaScript). It can for instance be used to
+draw graphs, make photo compositions or do simple (and not so simple)
+animations. 
+
+** The <canvas> element
+
+
+
+
+
+** Refrences
+
+https://developer.mozilla.org/en/Canvas_tutorial

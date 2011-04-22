@@ -1,0 +1,113 @@
+* unfuddle.com
+
+
+** Projects
+
+Work on many different projects and manage each one of them from a
+single unfuddle account, Each projects has it own set of tickets,
+milestones,  messages and notebooks.
+
+All paid Unfuddle plans offer you the ability to archive
+projects. Once a project has been archived it is placed in a read-only
+mode and no longer counts against your total number of active
+projects. For example, you may want to archive a project which you
+have completed but do not yet want to delete.
+
+
+** The Dashboard
+
+
+
+The dashboard is the hub of information on the project. You can
+benefit from project management tools, source control, issue
+management and time tracking.
+
+
+** Tickets
+
+Never again lose track of your project's bugs, issues, or feature
+requests.
+
+
+Unfuddle tickets help your project to stay organized. Prioritize,
+comment upon and then assign your tickets to your team members. With
+time tracking you can even keep track of which team members have been
+working on the tickets for the project.
+
+
+Every ticket benefits from workflow management and a verbose audit
+trail so you can keep track of who made certain changes for a ticket
+and when these changes were made.
+
+
+** Subversion and Git
+   
+
+Exactly what you would expect: Unlimited Subversion and Git
+repositories for each project in your account, with quick access to
+the project source code right from within your browser.
+
+
+The source browser presents a read-only view of the entire Subversion
+or Git repository through which you and those in your team with
+permission can quickly browse to any commit, directory or file. The
+source browser also allows you to see the contents of any code file at
+any revision so you can compare old and new versions side-by-side.
+
+
+** Messages
+
+Messages are all about simple and effective communication. If your team cannot communicate well your project will suffer.
+
+Messages allow you and your team to post project updates, ask
+questions, get feedback, and more. You can even post attachments to
+your messages and keep track of your latest specs and proposals. Think
+of it as a private blog for your project.
+
+** Milestones
+
+Unfuddle milestones help you to assign different tasks to different
+people or teams of people. Milestones are a great way to monitor your
+project's progress and to help your project stay on schedule.
+
+
+** Notebooks
+
+
+Notebooks are a collection of related pages, often comprising
+documents such as specifications or reference documents. Each notebook
+can be thought of a stand-alone wiki.
+
+
+Here are some of the highlights of Notebooks:
+
+
+1. Each Notebook page is completely versioned, allowing you to quickly
+   see history and compare differences between versions.
+
+2. Notebooks can have any number of attachments, which can then be
+   referenced from your pages.
+
+3. Pages can be interlinked using simple Unfuddle markup.
+
+4. All notebook pages are fully integrated into Unfuddle search, email
+   notifications and RSS feeds.
+
+
+** Time Tracking
+
+Never again be in the dark about where how your project is doing. Time
+tracking allows you to establish and track against realistic
+timelines. Now you can know immediately how many man hours are left in
+a project or milestone.
+
+
+Using time tracking in Unfuddle is as easy as entering the dates and
+amount of time that you have spent working on a ticket. Then, use the
+robust time reporting tools to find out exactly how your team has been
+meeting expectations. View reports by individuals, milestones or
+tickets.
+
+
+
+

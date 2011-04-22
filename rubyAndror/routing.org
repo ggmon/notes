@@ -1,0 +1,116 @@
+
+
+* Routes
+
+Routing is a pure Ruby mod_rewrite -alike that can map URLs to controller/action
+
+/parmas and back. It was added to Rails to make pretty URLs more
+configurage and to divorce us from the  mod_rewrite requirement.
+
+Routes are individual rules that map matching URLs to specifc
+controllers and actions. They are configured in the config/routes.rb
+file
+
+
+        
+** Dual purpose of routing 
+connects incoming HTTP  requests to the code in your application's
+controllers and helps you generate URLs without having to hard code
+them as strings
+
+*** Connecting URLs to code
+
+When rails appliction receives an incomming HTTP request, say 
+GET /patients/17
+
+In this case the application would most likely end up running  the
+show action within the patients controller, displaying  the details of
+the patient whose id is 17
+
+
+*** Generating URLs from code
+
+routing also  works in the reverse 
+
+@patient = Patient.find(17)
+<%= link_to "Patient record" patient_path(@patient) %>
+
+Then the routing engine is the piece that translates that to a link to
+a URL such as http://example.com/patients/17
+
+Note: Patient needs to be declared as a resource for this style of
+translation via a named route to be available.
+
+
+** Quick Tour of Routes.rb
+
+There are two componets to routing in rails. The routing engine
+itself, which is supplied as part of Rails and the file
+config/routes.rb, which contians the actual routes.
+                  
+*** Processing the File
+
+In format, routes.rb is nothing more than one big block sent to
+ActionController::Routing::Routes.draw
+
+You'll find five main types of content in this file
+
+1. RESTful Routes
+
+2. Named Routes
+
+3. Nested Routes
+
+4. Regular Routes
+
+5. Default Routes
+
+The routes.rb files is processed from top to bottom when a request
+comes in. The request will be dispatched to the first matching
+route. if there is no matching route the Rails returns HTTP 404
+
+
+
+** RESTful routes
+
+RESTful routes take advantage of the built-in REST orientation of
+Rails to wrap up a lot of routing information in a single declaration.
+
+map.resources :books
+
+
+** Named routes
+
+Named routes give you very redable links in your cod, as well as
+handling incoming request. Here's a typical named route.
+
+map.login '/login', :controller => 'sessions', :action => 'new'
+
+** Nested routes
+
+Nested routes let you declare that one resource is contained within
+another resource. For example, if your application includes parts,
+each of which belongs to an assembly, you might have this nested
+declaration
+
+map.resources :assemblies do |assemblies|
+  assemblies.resouces :parts
+end
+
+
+** Regular routes
+you will see non RESTful routing, which explicitly connects to parts
+of a URL to a particular action
+
+map.connect 'parts/:number', :controller =>
+'inventory', :action=>'show'
+
+
+** Default routes
+
+These are safety nets that catch other-wise unrouted request. Many
+Rails application will contain this pair of default routes.
+
+map.connect ':controller/:action/:id'
+map.connect ':controller/:action/:id.:format'
+

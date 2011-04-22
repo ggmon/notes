@@ -1,0 +1,15 @@
+
+
+* Java 
+
+** [[http://www.sitepoint.com/article/java-6-steps-mvc-web-apps/1/][Java MVC in 6 steps]]
+
+   
+* Mono
+
+** [[http://www.linuxjournal.com/article/8186][Rapid Gnome development with mono]]
+
+* Design patterns
+
+  [[http://en.wikipedia.org/wiki/Anti-pattern][Antipatterns]]
+

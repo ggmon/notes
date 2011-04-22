@@ -1,0 +1,10 @@
+
+
+* To specify gem dependency in your rails project
+
+specify the dependency in the file config/environment.rb 
+
+Rails::Initializer.run do |config|
+
+end
+

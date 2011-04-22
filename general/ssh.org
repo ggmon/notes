@@ -1,0 +1,10 @@
+
+
+* ssh tunnelling
+
+ssh tunnelling is an excellent way to tunnel insecure protocols
+through a secure communication channel. In this example, I'll tunnel
+POP3 traffic using ssh. Traditional POP3 traffic, including username
+and password information, travels clear-text across the network.
+
+

@@ -1,0 +1,13 @@
+#+STARTUP:overview
+#+STARTUP:hidestars
+#+TITLE: Web Services
+
+* SOAP Simple Object Access Protocol
+
+A protocol specification for exchanging structured information in the
+implementation of Web Services in computer networks.  It relies on
+Extensible Markup Language (XML) as its message format and usually
+relies on the other Application Layer protocols, most notably
+RPC(remote procedure call) and HTTP for message negotiation and
+transmission 
+

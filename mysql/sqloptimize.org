@@ -1,0 +1,111 @@
+#+STARTUP:overview
+#+STARTUP:hidestars
+
+* Mysql Index
+
+An index is a separate file that is sorted, and contains only the field/s you're interested in sorting on. If you create an index on employee_number, MySQL can find the corresponding record very quickly (Indexes work in very similar ways to an index in a book. Imagine paging through a technical book (or more often, an scrambled pile of notes!) looking for the topic "Optimizing MySQL". An index saves you an immense amount of time!
+
+
+
+
+
+EXPLAIN shows how your queries are being used. By putting is before a SELECT, you can see whether indexes are being used properly, and what kind of join is being performed.
+
+
+
+EXPLAIN SELECT employee_number,firstname,surname FROM employee WHERE employee_number= '10875';
+
+
+| table    | type | possible_keys | key  | key_len | ref  | rows | Extra      |
+| employee | ALL  | NULL          | NULL | NULL    | NULL |    2 | where used |
+|          |      |               |      |         |      |      | |
+
+So what are all these things?
+
+- table shows us which table the output is about (for when you join many tables in the query
+- type is an important one - it tells us which type of join is being used. From best to worst the types are: system, const, eq_ref, ref, range, index, all
+- possible_keys Shows which possible indexes apply to this table
+- key And which one is actually used
+- key_len give us the length of the key used. The shorter that better.
+- ref Tells us which column, or a constant, is used
+- rows Number of rows mysql believes it must examine to get the data
+- extra Extra info - the bad ones to see here are "using temporary" and "using filesort"
+
+
+
+
+** Side Effects of Indexing
+
+When you update a table with index, you have to update the index as well, so there is a performace price to pay
+
+
+** Some tips
+
+EXPLAIN SELECT firstname FROM employee WHERE overtime_rate/2<20;
+
++----------+------+---------------+------+---------+------+------+------------+
+| table    | type | possible_keys | key  | key_len | ref  | rows | Extra      |
++----------+------+---------------+------+---------+------+------+------------+
+| employee | ALL  | NULL          | NULL |    NULL | NULL |    2 | where used |
++----------+------+---------------+------+---------+------+------+------------+
+
+
+
+ EXPLAIN SELECT firstname FROM employee WHERE overtime_rate<20*2;
+
++--------+-------+---------------+---------------+---------+------+------+----------+
+|table   | type  | possible_keys | key           | key_len | ref  | rows |Extra     |
++--------+-------+---------------+---------------+---------+------+------+----------+
+|employee| range | overtime_rate | overtime_rate |       4 | NULL | 1 |where used|
++--------+-------+---------------+---------------+---------+------+------+----------+
+
+
+
+
+Ordering by surname is a common requirement, so it would make sense to create an index on surname.
+But in this example our employee table consists of thousands of people from Swaziland, and with the surname "Dlamini".
+So we need to index on firstname as well. The good news is that MySQL uses leftmost prefixing, which means that a
+multi-field index A,B,C will also be used to search not only for a,b,c combinations, but also A,B as well as just A.
+
+
+
+
+** The Query Optiimizer, OPTIMIZE AND ANALYZE
+
+The magic inside MySQL that decides which keys, if any, to use to in the query, is called the query optimizer. It takes a quick glance at the index to see which indexes are the best to use. Compare it to searching for a CD by the artist "Savuka", called "Third World Child", where there are 2 indexes, one alphabetical by artist name, and the other by album name. At a glance, you see that there are 20000 unique artists, and 400000 unique albums, so you decide to search by artist. But if you knew that there were 50 Savuka albums, and that Third World child is the only album starting with "T", your search criteria would change. You can provide similar information for the Optimizer by running
+
+ANALYZE TABLE tablename;
+
+This stores the key distribution for the table (running ANALYZE is equivalent to running myisamchk -a or myismachk --analyze).
+
+Many deletes and updates leave gaps in the table (especially when you're using varchar, or in particular text/blob fields). This means there are more unnecessary disk I/O's, as the head needs to skip over these gaps when reading. Running
+
+OPTIMIZE TABLE tablename
+
+solves this problem. Both of these statements should be run fairly frequently in any well looked after system.
+
+Another factor that most people don't use when indexing is to take advantage of short indexes. You don't have to index on the entire field. Our surname and firstname fields are 40 characters each. That means the index we created above is 80 characters. Inserts to this table then also have to write an additional 80 characters, and selects have 80 character blocks to maneuvre around (disk I/O is the primary hardware bottleneck, but that's for another day!). Try reducing the size of your index - in the example above, rather use.
+
+ALTER TABLE employee ADD INDEX(surname(20),firstname(20));
+
+Now our updates write to an index half the size, and selects have a smaller index to search. Both will be faster (unless you make the indexes too short - imagine a book index, instead of giving the full word, only contained the first letter of the word!. You'd spend a lot of time looking up "semaphore" and "saxophone" when you actually wanted "SQL". Don't do the same to MySQL!
+
+The same applies to the original field definitions. In these days of ample disk space, we don't often worry about space. But smaller usually means faster, so defining our surname and firstname fields as CHAR (255) would be a mistake if the biggest firstname is never more than 20 characters! You don't want to cut names off, but remember that you can ALTER the field later if conditions change, and you need to allow for more characters. I also suggest using VARCHAR rather than CHAR (variable length characters rather than fixed length characters), even though many don't recommend this as they are more subject to fragmentation. I overcome this by using OPTIMIZE often.
+
+
+
+
+$db->query("LOAD DATA INFILE 'datafile.txt' INTO TABLE employee (employee_number,firstname,surname,tel_no,salary) FIELDS TERMINATED BY '|'");
+
+LOAD DATA INFILE has defaults of:
+
+FIELDS TERMINATED BY '\t' ENCLOSED BY '' ESCAPED BY '\\'
+
+
+
+
+
+
+* Reference
+
+http://www.databasejournal.com/features/mysql/article.php/10897_1382791_3/Optimizing-MySQL-Queries-and-Indexes.htm

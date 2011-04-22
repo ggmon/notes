@@ -1,0 +1,30 @@
+
+
+* Debugging your Ruby on Rails Application
+
+
+** In a View
+
+<%= debug @object %>
+
+or
+
+<%= debug 'string' %>
+
+or
+
+<%= 'string'.inspect' %>
+
+
+
+** In a Controller
+
+logger.debug "The object is #{@object}"
+
+RAILS_DEFAULT_LOGGER.debug @object
+
+The RAILS_DEFAULT_LOGGER will work inside the Rails framework or inside any 
+logger where logger is not defined.
+
+
+return render :text => "The object is #{@object}"

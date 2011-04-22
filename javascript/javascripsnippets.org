@@ -1,0 +1,201 @@
+#+Author: ggmon
+#+STARTUP: overview
+#+STARTUP: hidestars
+
+
+* Javascript code snippets
+
+** Split and Length
+
+   mystr = "ggmon";
+   mystrlen = mystr.length;
+
+   mystr = "one:two:three";
+   mystrparts = mystr.split(":");
+   
+   
+
+
+** Regex
+
+   
+   if(imgtype.match(/^jpeg$|^png$/)) {
+
+   }
+
+
+
+** window.setTimeout
+
+Executes a code snippet or a function after a specified delay.
+         
+*** Syntax
+
+ timeoutID = window.setTimeout(func, delay, [param1, param2]);
+ timeoutID = window.setTimeout(code, delay);
+
+ - timeoutID is the ID of the timeout, which can be used with window.clearTimeout()
+ - func is the function to be executed
+ - delay is the number of milliseconds 
+
+
+** window.setInterval
+   
+Calls a function repeatedly, with a fixed time delay between each call
+to the function.
+
+intervalID = window.setInteraval(func,delay, param1, param2 ... )
+intervalID = window.setInterval(code, delay)
+
+
+- intervalID is a unique interval ID you can pass to clearInterval(). 
+
+
+* Date functions
+
+var now = new Date();
+
+var hour        = now.getHours();
+var minute      = now.getMinutes();
+var second      = now.getSeconds();
+var monthnumber = now.getMonth();
+var monthday    = now.getDate();
+var year        = now.getYear();
+
+var today=new Date()
+var year2000=new Date(2000,0,1)
+var diff=today-year2000 //unit is milliseconds
+diff=Math.round(diff/1000/60/60/24) //contains days passed since Year 2000
+
+http://www.javascriptkit.com/jsref/date.shtml#e1
+
+** Scriptiong the keyboard in javascript
+
+Keyboard related event handlers.
+
+onkeypress - invoked when a key is pressed.
+onkeydown - invoked when a key is held down.
+onkeyup - invoked when a key has been released after being pressed.
+
+
+<script type="text/javascript">
+function alertmsg () {
+alert ("You have pressed the keyboard inside the document");
+}
+document.onkeypress=alertmsg
+</script>
+
+
+
+Getting a knee-jerk reaction from the keyboard/script is fun and all,
+but definitely not practical by itself. What we need is to take the
+idea further, and learn how to detect when a particular key is
+pressed. The key is to probe the "event" object in NS6/Firefox, which
+contains essential information about an event when it occurs, in this
+case, the keyboard related events.
+
+
+Keyboard related properties of 
+
+
+| Properties              | Description                                                |
+|                         |                                                            |
+| altkey,ctrlkey,shiftkey | Boolean properites that indicate whether the Alt           |
+|                         | Ctrl, Meta and Shift keys were pressed.                    |
+|                         |                                                            |
+| metaKey                 | wheter meta key was pressed NS/Firefox only                |
+|                         |                                                            |
+| charCode                | Property indicating the Unicode for the key pressed        |
+|                         | use String.fromCharCode(charCode) to convert to String     |
+|                         | NS/Firefox only                                            |
+|                         |                                                            |
+|                         |                                                            |
+| keycode                 | same as above                                              |
+|                         |                                                            |
+| type                    | String indicating the type of the event "moveover" "click" |
+|                         |                                                            |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*References
+http://www.javascriptkit.com/javatutors/javascriptkey2.shtml
+
+
+
+** Common APIs in web and XML page scripting using the DOM
+
+ 1. document.getElementById(id)
+ 2. element.getElementByTagName(name)
+ 3. document.createElement(name)
+ 4. parentNode.appendChild(node)
+ 3. element.innerHTML
+ 4. element.style.left
+ 5. element.setAttribute
+ 6. element.getAttribute
+ 7. element.addEventListener
+ 8. window.content
+ 9. window.onload
+10. window.dump
+11. window.scrollTo
+
+
+*** document.getElementById(id)
+*** element.getElementByTagName(name)
+    Returns a list of elements with the given tag name. The subtree
+    underneath the specified element is searched, excluding the
+    element itself. 
+*** document.createElement(name)
+*** element.style.left
+
+    var div = document.getElementById("div1");
+    div.style.marginTop = ".25in";
+*** element.addEventListener
+
+  allows the registration of event listeneres  on the event target. An
+  event target may be a node in a document, the document itself, a
+  window or an XMLHttpRequest.
+
+  target.addEventListener(type,listener,useCapture);
+
+  type 
+  a string representign the event type 
+  
+  listener
+  The object that receives a notification when and event of a
+  specified type occurs.
+
+  useCapture
+  If true, useCapture indicates that the user wishes to initiate
+  capture. After initiating capture, all events of the specified type
+  will be dispatched to the registered listener before being
+  dispatched to any EventTargets beneath it in the DOM tree. Events
+  which are bubbling upward through the tree will not trigger 
+  listener designated to use capture.
+
+
+*** 
+
+
+
+
+
+
+
+
+   

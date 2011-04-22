@@ -1,0 +1,36 @@
+#+STARTUP:overview
+#+STARTUP:hidestars
+#+TITLE: Web Services
+
+* Web Services
+
+  A web service is defined by W3C as a software designed to support
+  interoperable machine to machine interaction over a network. Web
+  serivces are frequently just WEB APIs that can be accessed over a
+  network such as the Internet, and executed on a remote system hosting
+  the request services.
+
+  - Web services are application components.
+  - Web services communicate using open protocols.
+  - Web services are self contained and self describing.
+  - Web services can be described  using UDDI
+  - Web services can be used by other application.
+  - XML is the basis of Web services
+
+
+** How does it work
+
+   The basic Web service platform is XML + HTTP.
+   XML provides a language which can be used between different
+   platforms and programming languages and still express complex
+   messages and functions.
+
+   Web services platform elements are
+   
+   - SOAP (Simple Object Access Protocol)
+   - UDDI (Universal Description, Discovery and Integration)
+   - WSDL (Web Services Description Language)
+
+
+
+     

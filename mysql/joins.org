@@ -1,0 +1,32 @@
+#+STARTUP:overview
+#+STARTUP:hidestars
+#+TITLE: Web Services
+
+
+* MySQL - LEFT JOIN and RIGHT JOIN, INNER JOIN AND OUTER JOIN
+
+If I do a regular JOIN (with none of the keywords INNER, OUTER, LEFT
+or RIGHT), then I get all records that match in the appropriate way in
+the two tables, and records in both incoming tables that do not match
+are not reported:
+
+If I do a LEFT JOIN, I get all records that match in the same way and
+IN ADDITION I get an extra record for each unmatched record in the
+left table of the join 
+
+
+If I do a RIGHT JOIN, I get all the records that match and IN ADDITION
+I get an extra record for each unmatched record in the right table of
+the join 
+
+
+An INNER JOIN does a full join, just like the first example, and the
+word OUTER may be added after the word LEFT or RIGHT in the last two
+examples - it's provided for ODBC compatibility and doesn't add an
+extra capabilities.
+
+
+
+
+
+

@@ -1,0 +1,20 @@
+
+
+
+* Install Mongrel & Friends
+  
+  sudo gem install daemons gem_plugin mongrel mongrel_cluster --include-dependencies
+
+
+
+
+
+
+
+
+
+
+
+** References
+
+http://blog.codahale.com/2006/06/19/time-for-a-grown-up-server-rails-mongrel-apache-capistrano-and-you/

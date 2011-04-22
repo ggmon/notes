@@ -1,0 +1,20 @@
+#+author: ggmon
+#+STARTUP: overview
+#+STARTUP: hidestars
+
+* Click Frame Work
+
+Click is a simple J2EE web application framework for commercial java
+developers, this is an opene source project, licensed under the
+Apacehe foundation.
+
+Click uses an event based programming model for prcessing Servlet
+requests and Velocity for rendering  the response, other templating
+engine like JSP and Freemarker are also supported.
+
+This framework uses a single servlet, called ClickServlet to act as a
+request dispatcher. When a request arrives ClickServlet creates a Page
+Object to process the request and then use the page's velocity
+template to render the results.
+
+

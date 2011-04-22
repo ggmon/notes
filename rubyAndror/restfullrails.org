@@ -1,0 +1,77 @@
+
+
+* What is REST
+
+REST describes an architecture paradigm for web application that
+request and manipulate web resources using the standard HTTP methods
+GET, POST, PUT and DELETE
+
+A resource in the context of REST is a URL-addressable entity that
+offers interaction via HTTP. Resources can be represented in different
+formats like HTML, XML or RSS. REST URLs are unique. A REST resource
+URL does not address a model and its correpsonding action.
+
+
+REST (Representational State Transfer) is a programming concept in
+which you build your web application to only process basic CRUD
+(Create Read Update and Delete) operations. This limitation may make
+RESTful programming difficult at first; however, the benefits are well
+worth the learning curve. First, your program will have much less code
+overall, especially in your controllers. Secondly, your code will be
+much easier to read, which is very important when other developers
+start working with your code base. Finally, as Ruby is fully object
+oriented, it makes sense that well developed models (which are
+objects) should only require CRUD operations anyway. As such, RESTful
+programming will feel much more natural as you continue working with
+Ruby.
+
+
+
+A good frame of mind for building RESTful web applications is to spend
+most of your time thinking about your models. Smart models should know
+how to find, create, update and ultimately destroy themselves and
+their related objects whenever necessary. Once you have smart models,
+controllers can focus on taking parameters from your users and
+yielding appropriate responses in the proper format, be it HTML,
+Javascript, XML or RSS.
+
+
+At the end of the day, all of this will make for more organized and
+flexible code base
+
+
+
+
+** Why REST
+
+What REST shows us, however, is that Rails has room for conceptional
+improvements, 
+
+- Clean URLs. REST URLs represent resources and  not actions.
+
+- Different Response formats
+
+- Less Code
+
+- CRUD-oriented controllers
+
+- Clear Application Design
+
+
+REST is still MVC-based and from an technical point of view, can be
+reduced to the following concepts.
+
+- The usage of respond_to in controller code
+
+- New helper methods for links and forms.
+
+- The usage of URL methods  in the controller redirects.
+
+- New routes that are generated from the method resources in routes.rb
+
+
+
+
+** Resources
+
+http://www.robertsosinski.com/2008/02/23/simple-and-restful-authentication-for-ruby-on-rails/

@@ -1,0 +1,42 @@
+
+
+* Intro
+SQLITE is a database engine that uses just one file per database. It’
+s tiny, simple to use and, most importantly, very easy to use with
+Ruby on Rails. All you need is the sqlite ruby gem, which is already
+included in most Ruby installations.
+
+
+Well now; you are set up. Just go ahead, create your database
+structure. How? Edit db/schema.rb and start adding tables definitions
+in a ruby syntax; something like this:
+
+
+
+ActiveRecord::Schema.define do
+
+  create_table "users", :force => true do |t|
+    t.column :login, :string, :limit => 80
+    t.column :cryptpassword, :string, :limit => 40
+    t.column :email, :string, :limit => 100
+    t.column :created_at, :datetime
+    t.column :updated_at, :datetime
+  end
+
+  create_table :article, :force => true  do |t|
+      t.column :title, :string
+      t.column :created_at, :datetime
+      t.column :updated_at, :datetime
+      t.column :content, :text
+  end
+end
+
+sqlite3 db/development.sqlite3
+.output my_sql_dump.sql
+.dump
+.exit
+
+
+* References 
+
+http://alexbrie.net/1541/setting-up-rails-and-sqlite-3/

@@ -1,0 +1,12 @@
+
+
+
+
+** rails 2 and  broken render_text
+
+Looks like that in Rails 2, in addition to changing the default
+database, default sessions store, now some of the oldies such as
+render_text method no longer work as expected. If you’ve used
+render_text "some text" in a controller, then you’ll need to replace
+it with render :text => "some text".
+

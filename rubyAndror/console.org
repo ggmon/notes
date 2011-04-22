@@ -1,0 +1,6 @@
+
+** Debugging routes on console
+r = ActionController::Routing::Routes
+puts r.routes
+
+http://www.infinitecube.com/?p=5=1

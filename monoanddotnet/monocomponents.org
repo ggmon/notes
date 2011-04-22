@@ -1,0 +1,25 @@
+#+TITLE:Mono-Components
+#+Author: ggmon
+#+STARTUP: overview
+#+STARTUP: hidestars
+
+
+* Core Mono
+
+** Common Language Runtime
+
+** C# Compiler
+
+** .Net Libraries
+
+
+
+** How It works.
+
+   Source code in any compatible language
+
+   compile to managed code (Intermediate Language IL)
+
+   Common Lanugae Runtime [jit compiler] compiles to native code
+
+

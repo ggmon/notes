@@ -1,0 +1,49 @@
+
+
+* What is a Gem?
+
+A gem is a packaged Ruby application or libraray. It has a name and a version
+
+** RubyGem Features
+
+- Easy Installation and removal of RubyGems packages and their dependents.
+- Management and control of local packages
+- Package dependency management
+- Query, search and list local and remote packages
+- Multiple version support for installed packages
+- Web-based interface to view the documentation for your installed gems
+- Easy to use interface for building gem packages
+- Simple server for distributing your own gem packages
+
+
+** Basic Gem usage
+
+>gem query --remote
+
+will list a detailed list of all the gems on the remote server.
+
+>gem query --remote --name-matches doom
+
+will list details of matching gems on the remote server
+
+>gem install --remote progressbar
+
+will install the progress bar gem on your computer
+
+>gem spec progressbar
+
+will see all the details fo the "progressbar" gem.
+
+>gem unistall progressbar
+
+will uninstall the progressbar
+
+>gem query --local
+
+listing all installed gems
+
+
+
+** Refrences
+
+http://www.rubygems.org/read/chapter/3
