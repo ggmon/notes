@@ -1,0 +1,77 @@
+
+* Javascript
+
+
+** Datatypes
+
+*** Primitive Datatypes
+    
+    - Number
+      this includes floating point numbers as well as integers
+      1.0, 1, 2, 1e309, Infinity, NaN
+      NaN you get it when you try a numeric opetor an some variable
+      and it fails
+
+    - String
+      any number of characters, "a", "ab", "adddd"
+
+     - Boolean
+       can be either true or false.
+
+     - Undefined
+       When you try to access a variable that doesn't exist, you get
+       the special value undefined. The same will happen when you have
+       declared a variable and not given it a value.
+
+     - Null
+       This is another special data type, that can have only one value
+       the null value, It means no value, an empty value, nothing. The
+       difference with undefined, is that if a variable has a value
+       null, it is still defined.
+
+       Any value that doesn't belong to one  of the five primitive
+       types listed above is an object. Even null is considered an
+       object.
+
+*** Finding out the value Type - the typeof Operator
+
+    
+
+** Operators
+
+   |-----------------+-----------------------------------------+---------|
+   | Operator symbol | Descritpion                             | Example |
+   |-----------------+-----------------------------------------+---------|
+   | ==              | Equality comparison, returns            |         |
+   |                 | true when both the operands are         |         |
+   |                 | equal. The opearands are convertedto    |         |
+   |                 | to same type before comparison          |         |
+   |-----------------+-----------------------------------------+---------|
+   | ===             | Equality and type comparison: Returns   |         |
+   |                 | true if both the operandars are equal   |         |
+   |                 | and of the same type. It is safer to    |         |
+   |                 | compare this way                        |         |
+   |-----------------+-----------------------------------------+---------|
+   | !=              | Non equality comparison: Return true if |         |
+   |                 | the operaand are equal after a type     |         |
+   |                 | conversion of the operands              |         |
+   |-----------------+-----------------------------------------+---------|
+   | !==             | Non equality comparison before type     |         |
+   |                 | conversion                              |         |
+   |-----------------+-----------------------------------------+---------|
+   | >,>=,<=, <      | as usual                                |         |
+   |-----------------+-----------------------------------------+---------|
+
+
+
+** Datastructures
+
+*** Arrays
+    
+
+** Control Structures
+
+** Builtin Functions
+
+** Example Programs
+

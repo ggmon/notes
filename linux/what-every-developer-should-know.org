@@ -1,0 +1,120 @@
+
+* What every devloper should know About the kernel
+
+  
+** Process Excecution
+   process executes in two modes, Kernel Mode and User Mode, the code
+   that you write and the libraries that you link execute in user
+   mode. When your process requires services from the kernel, it must
+   execut kernel code, which execute only in kernel mode.
+
+   The memory that the process sees when in user mode is called user
+   space. this memory is uniq to that process, no other process should
+   view it, also it the process corrupts this memory it should not breaks
+
+   For the system to function as a whole, the kernel needs to be able
+   to maintain data structures to control every process in the
+   system. To do this, it needs a region of memory that is common to
+   all processes. Because the kernel is executed by every process in
+   the system, every process needs access to a common memory
+   region. To preserve security, however, the kernel code and data
+   structures must be strictly iso-lated from user code and data. That
+   is why there is a kernel mode. Only kernel code runs in kernel
+   mode, where it can see the common kernel data and execute
+   privi-leged instructions. We call the memory that the process sees
+   in kernel mode kernelspace. There is only one kernel space, which
+   is seen by every process when it runs in kernel mode, unlike user
+   space, which is unique to every process.
+
+
+** System calls
+
+   Processes enter and exit kernle mode via system calls. Most common
+   POSIX function calls are simple wrappers around system calls, such
+   as open, close, read, ioctl, write.
+   The call to
+   read, for example, is equivalent to the following:
+#+BEGIN_EXAMPLE
+   #include <syscall.h>
+   ...
+   n = syscall(SYS_read, fd, buffer, length);
+#+END_EXAMPLE
+
+   Each system call is given a number by the kenel, defined by a macro
+   like SYS_read. The macros of the system calls are defined in
+   sycall.h. The mechanism used to make system calls, however is
+   unique to each processor architecture. The syscall function is a
+   wrapper around the assembly code used to make the system call.
+
+   typically the user puts the arguments in some predefined registers
+   and invoke and interrupt, that cause a system call handler to be
+   called. The intterupt handler switches the process into kernel mode
+   and call appropriate sytem call.
+
+   System call vary from one operating system to other and possibly
+   from one version to another. The technique used for the syscall is
+   called and Application Binary Interface(ABI for short). ABI does
+   not require you to link your code against the code you want to
+   run. this is one reason why you progam can run onmany different
+   kernels without rebuilding. 
+
+
+** The process Scheduler
+
+   The program/algoritim that divides the CPU time is called
+   scheduler. The Linux kernel provides serveral scheduling algorithms
+   and allows the user to select at boot time the type of scheduler to
+   use. 
+
+*** Cooperative multitasking.
+   A process that communicates extensively with device will call the
+   sheduler often. Device I/O invarialby involes some amount of
+   waiting. When the device is slow, most of the cpu time will be
+   spend waiting. Such process can handle all the scheduling by
+   iteself and such a scheduling is called cooperative multitasking.
+   Transistion from one process to the next occur only when the
+   running process gives up the CPU, which allow the other to run. 
+
+   
+
+*** Preemptive mutitasking.
+    Porcesses, like number-crunching application, can consume the CPU
+    and starve the other process of CPU time, to deal with such
+    process the operation system use preemtive multitasking. A
+    preemtive multitasking operating system interrupts(preempts)
+    process that do not give up the CPU so that anothe task can be
+    scheduled. Linux mostly uses a combination of cooperative and
+    preemptive scheduling.
+
+
+*** Blocking, Preemption, and Yielding
+    Each process is given a timeslice to execute. When the kernel
+    stops a process when its time slice has expired, we say that the
+    process has preempted.
+
+    When a process voluntarily gives up the process we say  the
+    process has yielded the CPU. A process can call the sched_yield
+    system call to explicitly yield the CPU from the user.
+
+    When a process waits for an event in kernel mode, we say the
+    process if blocking. This means that the process will not be ready
+    to run until the event occurs. This means that the process will
+    not be ready to run until the even occurs.
+
+    Linux from 2.6 version has preemptable kernel. In preemptable
+    kernel, the lower-priority process can be preempted in the middle
+    of a system call.
+
+
+*** Scheduling Priorities and Fairness
+
+    Like all premtive multitaksing opertiong system, Linux implments a
+    priority scheme for scheduling. 
+   
+
+   
+
+  
+   
+
+
