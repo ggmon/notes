@@ -1,0 +1,81 @@
+
+* Bundler
+
+  Bundler does dependency resolution, on the full list of gems
+  specified in your Gemfile, all at once 
+
+** Gemfile
+   It is a ruby-based manifest file
+
+   gem 'nokogiri'
+   gem 'geokit'
+
+   group :test do 
+     gem 'faker'
+     gem 'rspec'
+   end
+
+   Occasionly the name of the gem that should be used in require
+   statement is different than the name of the gem in the repository
+
+   gem 'sqlite3-ruby', :require => 'sqlite3'
+
+
+   gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
+
+  
+   gem 'nokogiri', :git =>
+    'git://github.com/tenderlove/nokogiri.git',
+    :ref => '0eec4'
+
+   gem 'nokogiri', :path => '~/code/nokogiri'
+
+   
+
+** Installing Gems
+
+   $ bundle install
+   $ bundle install --without development test
+
+
+** Installation Directory
+
+   The default location for the gems installed by bundler is a
+   directory named .bundle in your home directory.
+
+   To specify a project specific directory you have to call
+
+   $ bundle install  vendor
+
+   disabling shared gems,ie installing gems even if it is already
+   installed and can be shared
+
+   $ bundle install vendor --disable-shared-gems
+   
+
+
+** Gem Locking
+
+   Every time you install or update, Bundler calculates, the
+   dependency  tree for you appliction and stores the results in a
+   file called Gemfile.lock.
+
+
+** Packaging Gems
+   
+   You can package up all your gems in vendor/cache
+   $ bundle package
+
+   Running bundle install in an application with packaged gems will
+   use the gems in the package and skip connecting to rubygems.org or
+   any other gem sources. You can thus avoid external depenedency at
+   deploy time, or if you depend on private gems
+
+  
+
+** Making gem depenedencies available to non rails scripts
+
+   Non Rails scripts must be executed with bundle exec in order to get
+   properly initialized RubyGems environment
+
+   $ bundle exec cucumber

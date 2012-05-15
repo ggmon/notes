@@ -1,0 +1,229 @@
+
+* Startup And Application Settings
+
+  Whenever you start a process to handle requests the first thing that happens is that
+  config/boot.rb is loaded
+
+  These are the three files involved in setting up the Entire Rails stack.
+
+  
+  boot.rb - sets up Bundler and load paths
+  application.rb - loads rails gems, gems for the specified Rails.env
+  and configures the appliction 
+
+  environment.rb - runs all intializers
+
+  All three are run when you need the whole Rails environment. by
+  runner, console, server.
+
+
+** application.rb
+   
+   It is where many of the application settings live, and it is the
+   only file that is required on top of config/environment.rb
+
+   once config/boot.rb is loaded
+   
+   require 'rails/all'
+
+   A new feature of rails is the ability to cherry pick needed
+   componenets
+
+   To cherry pick remove require 'rails/all' and list the rails
+   railties that you want.
+   
+   require "active_model/railtie"
+   require "active_record/railtie"
+   require "action_controller/railtie"
+   require "action_view/railtie"
+   require "action_mailer/railtie"
+   require "active_resource/railtie"
+
+   The main configurtion of our files follows, which in Rails3 gets
+   its own module and class.
+
+   module Technoparkpages
+   class Application < Rails::Application
+
+   end
+
+   the creation of a module specifically for your application is part
+   of the groundwork for supporting multiple Rails appliction in the
+   same process.
+
+   
+   
+** Load Path Modifications
+   
+   By default, Rails looks for code in a number of standard
+   directories such as app/models and app/controllers collectievly
+   known as the load paths. You can add other directories to the load
+   path using the following code. (config.load_paths from rails 2.3.8
+   have been renamed to config.autoload_paths)
+
+   config.autoload_paths += %W(#{config.root}/extras)
+
+   config.autoload_paths += %W(#{config.root}/app/observors)
+
+
+** Plugin Load Order
+
+   Normally, rails load plugins alphabetically by directory name. if
+   you run in any problem you could adjust the reordering.
+
+   # Only load the plugins named here, in the order given (default is
+   alphabetical).
+   # :all can be used as a placeholder for all plugins not explicitly named
+   config.plugins = [ :exception_notification, :ssl_requirement, :all
+   ]
+
+
+** Observers
+
+   Active record observers are first-class objects in you Rails
+   application that perform specific tasks such as clearing caches and
+   managing denormalized data
+
+   # Activate observers that should always be running
+   config.active_record.observers = :cacher, :garbage_collector,
+   :forum_observe
+
+** Time Zones
+
+   The default Time zone of Rails 3 is UTC. 
+   
+   # Set Time.zone default to the specified zone and make Active Record
+   auto-convert
+   # Run "rake -D time" for a list of tasks for finding time zone names.
+   config.time_zone = 'Central Time (US & Canada)
+
+ 
+** Localization
+   
+   The default locale is :en and can be overridden 
+
+   # The default locale is :en and all translations from
+   # config/locales/*.rb,yml are auto loaded.
+   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales',
+     '*.{rb,yml}')]
+   # config.i18n.default_locale = :de
+
+
+
+** Generator Default Settings
+
+   Rails generator scripts make certain assumptions about your tool chain. Setting the
+   correct values here means having to type less parameters on the command line. For
+   instance, at Hashrocket we use RSpec without fixtures and Haml exclusively, so our
+   settings would look like:
+
+   # Configure generators values. Many other options are available,
+   # be sure to check the documentation.
+   config.generators do |g|
+     g.template_engine :haml
+     g.test_framework :rspec, :fixture => false
+   end
+
+
+** Intializers
+   you can add initializers under config/initializers directory, which
+   are automatically loaded at startup. You can add configuration
+   settings by adding your own files. By default five initializers are
+   added by default.
+
+   - Backtrace Silencers
+
+   # You can add backtrace silencers for libraries that you're using
+   # but don't wish to see in your backtraces.
+   Rails.backtrace_cleaner.add_silencer { |line| line =~ /my_noisy_library/ }
+   # You can also remove all the silencers if you're trying to debug
+   # a problem that might stem from framework code.
+   Rails.backtrace_cleaner.remove_silencers!
+
+
+   - Cookie Verification Secret
+
+   The cookie_verification_secret.rb initializer,contains the secret
+   key, randomly generated along with your app, which is used to sign
+   cookies.
+
+   ActionController::Base.cookie_verifier_secret =
+  '3419dbd82eefe65c27e71b0...'
+
+
+  - Inflections
+
+    Rails has a class name Inflector whose responsibility is to
+    transform strings (words) from singular to plural, class names to
+    table names, modularized class names to ones without and class
+    names to foreign_keys (some of its operators are funny as
+    dasherize)
+
+    $ rails console
+    >> ActiveSupport::Inflector.pluralize "project"
+    => "projects"
+    >> ActiveSupport::Inflector.pluralize "virus"
+    => "viri"
+    >> "pensum".pluralize # Inflector features are mixed into String by
+    default
+    => "pensums"
+
+    you can teach more inflections by placing codes inside
+    config/initializers/inflections.rb
+
+    ActiveSupport::Inflector.inflections do |inflect|
+     inflect.plural /^(ox)$/i, '\1en'
+     inflect.singular /^(ox)en/i, '\1'
+     inflect.irregular 'person', 'people'
+     inflect.uncountable %w( fish sheep )
+   end
+
+   The file activesupport/test/inflector_test.rb has a long list of pluralizations
+
+
+
+  - Custom MIME types
+    
+    Rails supports a standard set of MIME types
+    
+    If your application needs to respond to other MIME types, you can register them in
+    the mime_types.rb initializer
+    # Add new mime types for use in respond_to blocks:
+    # Mime::Type.register "text/richtext", :rtf
+    # Mime::Type.register_alias "text/html", :iphone
+
+  - Session Store
+
+    Session cookies in Rails are signed with a random secret string
+    that’s generated along with new Rails apps. You can change that
+    secret string in session_store.rb if you’re really paranoid
+
+    # Your secret key for verifying cookie session data integrity.
+    # If you change this key, all old sessions will become invalid!
+    # Make sure the secret is at least 30 characters and all random,
+    # no regular words or you'll be exposed to dictionary attacks.
+     ActionController::Base.session = {
+       :key => '_example_session',
+       :secret => '70c647f83a15edd9895b86c16...'
+     }
+    If you want to store user sessions in the database instead of in cookies, which you want
+    to do if your application keeps sensitive data in sessions, then this initializer is the place
+    to do it:
+    # Use the database for sessions instead of the cookie-based default
+    # (create the session table with "rake db:sessions:create")
+    ActionController::Base.session_store = :active_record_store
+
+
+
+
+
+
+
+
+
+
+
+
+** Additional Configuration
+
+   

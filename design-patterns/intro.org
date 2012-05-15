@@ -1,0 +1,7 @@
+
+* Pattersn for Pattern
+
+ - Separate out the things that change form thos that stay the same
+ - Program to an interface, not an implementation
+ - Prefer composition over inheritence
+ - Delegate, Delegate, Delegate
