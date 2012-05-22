@@ -1,0 +1,119 @@
+* RSpec
+
+  DSL for specifying desired behaviour of Ruby code.
+
+  Rspecs are incredibly readable, 
+
+#+BEGIN_EXAMPLE
+  
+  require 'spec_helper'
+
+  describe Timesheet do
+    let(:timesheet) 
+  end
+
+#-END_EXAMPLE
+
+
+** Basic Syntax And API
+
+*** describe and context
+    
+    The describe and context are used to group together related
+    example of behaviour. They are aliases, both taking a string
+    description as their first argument.
+
+    describe Timesheet do
+       let(:timesheet) { Factory(:timesheet) }
+
+
+*** let(:name) {expression}
+
+    The let method  simplifies the creation of memoized attributes for
+    use in spec.
+
+    
+    describe BlogPost do
+      it "does something" do
+        blog_post = BlogPost.new :title => 'Hello'
+        blog_post.should ...
+      end
+
+      it "does something else" do
+        blog_post = BlogPost.new :title => 'Hello'
+        blog_post.should ...
+      end
+    end
+
+    
+    describle BlogPost do
+      before do
+        @blog_post = BlogPost.new :title => 'Hello'
+      end
+      
+      it "does something" do
+        @blog_post.should ...
+      end
+    end
+   
+
+    describle BlogPost do
+      let(:blog_post) {BlogPost.new :title => 'Hello world!'}  #lazy mode
+      let!(:comment) {blog_post.comments.create :text=>"d"}  #lazy mode
+      it "does something" do
+        blog_post.should ..........
+      end
+    end
+
+
+*** before and after
+    
+    before and after are akin to setup and teardown methods, Before
+    and after code can be inserted in any describe or context blocks
+    and by default they execute for each it block and that share their
+    scope. 
+
+
+*** it
+
+    the it method, takes a description plus a block, similar to
+    describe.
+
+    context "when there are no search results" do
+      before do
+        email_search_for(user, '123')
+      end
+
+      it "shows the search form" do
+        current_url.should == colleagues_url
+      end
+
+      it "renders an error message" do 
+        response.should have_tag('.error', 'Not maching found')
+      end
+      
+    end
+
+    
+
+
+*** specify
+
+    The specify method is simply an alias of the it method, and is
+    used in a different construct to improve readablity
+
+    describe BlogPost do
+      let(:blog_post) { BlogPost.new :title => 'foo' }
+      specify { blog_post.should_not be_published }
+    end
+
+
+
+*** expect
+
+    when you expect a method call to change a value or throw an
+    exception, then use expect
+
+    expect{
+     BlogPost.create :title => 'Hello'
+    }.to change {BlogPost.count }.by(1)
